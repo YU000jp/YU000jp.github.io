@@ -1,3 +1,10 @@
+@media only screen and (max-width:1000px) {
+  body {
+    font-size: .8em;
+  }
+
+}
+
 @media(prefers-color-scheme:dark) {
   :root {
     --taskItemBackgroundColor: hsla(0, 0%, 39%, 0.25);
