@@ -1,3 +1,3 @@
-self.addEventListener('fetch', function (e) {
+self.addEventListener('fetch', function () {
     //空でOK
 });
