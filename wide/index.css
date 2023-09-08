@@ -76,7 +76,7 @@ p#sunday {
 div#container {
   min-width: 1880px;
   max-width: 98vw;
-  height: 600px;
+  /* height: 600px; */
   margin: 0 auto;
   padding: 1px;
   box-sizing: border-box;
@@ -107,30 +107,34 @@ div#container form#createForm button {
 
 div#container label>div#lane {
   display: flex;
-  user-select: none;
+  /* user-select: none; */
   border-radius: .4em;
   justify-content: space-between;
+  height: 100%;
 }
 
 div#container label>div#lane div.lane-item {
   border-bottom: dotted 1px;
   width: 100%;
+  /* height: 100%; */
 }
 
 div#container label>div#lane div.lane-item-inner {
   display: flex;
-  /* height: 100%; */
+  height: 100%;
   flex-wrap: wrap;
+  overflow: hidden;
 }
 
 div#container label>div#lane div.lane-item-inner div.tasks {
-  margin: 0;
-  padding: 1px;
+  /* margin: 0; */
+  padding: 7px;
   list-style: none;
   /* flex: 1; */
   min-height: 300px;
   width: 100%;
   border-right: dotted 1px;
+  height: 100%;
 }
 
 div#container label>div#lane div.lane-item-inner div.tasks>:not(:first-child) {
@@ -145,6 +149,7 @@ div#container label>div#lane div.lane-item-inner div.lane-status {
   width: 100%;
   justify-content: center;
   border-bottom: dotted 1px;
+  user-select: none!important;
 }
 
 div#container label>div#lane div.lane-item-inner div.lane-status p.lane-status-name {
@@ -160,7 +165,7 @@ div#container label>div#lane div.lane-item-inner div.lane-status button#deleteAl
 div.task-item {
   display: flex;
   align-items: center;
-  padding: 2px;
+  padding: 4px;
   border: 1px solid var(--taskItemBorderColor);
   background-color: var(--taskItemBackgroundColor);
   background-clip: padding-box;
@@ -168,7 +173,7 @@ div.task-item {
   cursor: grab;
   box-shadow: 0 0 5px 0 rgba(0, 0, 0, 0.2);
   border-radius: 5px;
-  min-height: 10em;
+  height: 2em;
 }
 
 div.task-item input[type="checkbox"] {
