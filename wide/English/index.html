@@ -151,6 +151,12 @@
   </div>
   </label>
   <script src="main-67922239.js"></script>
+  <script>
+    if ('serviceWorker' in navigator) {
+      navigator.serviceWorker.register('./../../serviceWorker.js')
+        .then((reg) => { console.log('SW registered.', reg); });
+    }
+  </script>
 </body>
 
 </html>
