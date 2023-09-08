@@ -1,0 +1,148 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+  <meta charset="UTF-8" />
+  <meta name="color-scheme" content="light dark" />
+  <link rel="stylesheet" href="./../index.css" />
+  <title>Daily Kanban (type sidebar)</title>
+</head>
+
+<body>
+
+  <div id="container">
+
+    <form id="createForm">
+      <input id="title" class="new-input" name="title" placeholder="🖊️Edit here" title="Add to today list" />
+      <button>Add item</button>
+    </form>
+
+    <label for="title">
+      <div id="lane">
+
+        <div class="lane-item" title="Monday">
+          <div class="lane-item-inner">
+            <div class="lane-status">
+              <p class="lane-status-name">Mon</p>
+            </div>
+
+            <div id="mondayList" class="tasks"></div>
+          </div>
+        </div>
+
+        <div class="lane-item" title="Tuesday">
+          <div class="lane-item-inner">
+            <div class="lane-status">
+              <p class="lane-status-name">Tue</p>
+            </div>
+
+            <div id="tuesdayList" class="tasks"></div>
+          </div>
+        </div>
+
+        <div class="lane-item" title="Wednesday">
+          <div class="lane-item-inner">
+            <div class="lane-status">
+              <p class="lane-status-name">Wed</p>
+            </div>
+
+            <div id="wednesdayList" class="tasks"></div>
+          </div>
+        </div>
+
+        <div class="lane-item" title="Thursday">
+          <div class="lane-item-inner">
+            <div class="lane-status">
+              <p class="lane-status-name">Thu</p>
+            </div>
+
+            <div id="thursdayList" class="tasks"></div>
+          </div>
+        </div>
+        <div class="lane-item" title="Friday">
+          <div class="lane-item-inner">
+            <div class="lane-status">
+              <p class="lane-status-name">Fri</p>
+            </div>
+
+            <div id="fridayList" class="tasks"></div>
+          </div>
+        </div>
+        <div class="lane-item" title="saturday">
+          <div class="lane-item-inner">
+            <div class="lane-status">
+              <p class="lane-status-name" id="saturday">Sat</p>
+            </div>
+
+            <div id="saturdayList" class="tasks"></div>
+          </div>
+        </div>
+        <div class="lane-item" title="Sunday">
+          <div class="lane-item-inner">
+            <div class="lane-status">
+              <p class="lane-status-name" id="sunday">Sun</p>
+            </div>
+
+            <div id="sundayList" class="tasks"></div>
+          </div>
+        </div>
+
+        <div class="lane-item">
+          <div class="lane-item-inner">
+            <div class="lane-status">
+              <p class="lane-status-name" id="DONE">DONE</p>
+              <button id="deleteAllDoneTask">Clear</button>
+            </div>
+
+            <div id="doneList" class="tasks" title="To delete the item, move it into this list."></div>
+          </div>
+        </div>
+      </div>
+
+      <br />
+
+      <details>
+        <summary>Usage</summary>
+        <div>
+          <ul>
+            <li>Please use it as a simple board. It is a beta version, not a stable version. There is also a possibility
+              that the data will be lost.</li>
+            <li>If use it in the sidebar of Microsoft Edge browser, disable touch mode. A problem happen dragging a
+              item.</li>
+            <li>Input short sentences. To emphasize important events, use emojis.</li>
+            <li>Initially, items will be added to today's day of the week. To move them to other days, drag the items
+              vertically.</li>
+            <li>Clicking anywhere inside the box other than the items will move the cursor to the input field, and you
+              can add items by pressing the Enter key. Continuous input is also possible as is.</li>
+            <li>Cannot edit each items. Please delete them once if needed.</li>
+            <li>To delete, move them to the DONE list at the bottom. <small>(This serves as an archive)</small></li>
+          </ul>
+        </div>
+      </details>
+
+      <details>
+        <summary>Settings</summary>
+        <div>
+          <ul>
+            <li><label><input type="checkbox" id="startDayOfWeek" />Sunday first</label></li>
+            <li><label><select id="todayColoring">
+                  <option value="unset">Unset</option>
+                  <option value="var(--grayColor)" style="background:var(--grayColor)">Gray</option>
+                  <option value="var(--yellowColor)" style="background:var(--yellowColor)">Yellow</option>
+                  <option value="var(--greenColor)" style="background:var(--greenColor)">Green</option>
+                  <option value="var(--blueColor)" style="background:var(--blueColor)">Blue</option>
+                  <option value="var(--redColor)" style="background:var(--redColor)">Red</option>
+                  <option value="var(--orangeColor)" style="background:var(--orangeColor)">Orange</option>
+                </select>Color today's day of the week</label></li>
+          </ul>
+        </div>
+      </details>
+
+      <hr />
+
+  </div>
+  </label>
+  <script src="main-9964ded4.js"></script>
+</body>
+
+</html>
