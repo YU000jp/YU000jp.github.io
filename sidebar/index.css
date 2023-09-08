@@ -244,3 +244,9 @@ div#doneList {
   -ms-filter: "progid:DXImageTransform.Microsoft.Alpha(Opacity=40)";
   filter: alpha(opacity=40);
 }
+
+button.add-button {
+  position: absolute;
+  top: 1px;
+  left: 1px;
+}

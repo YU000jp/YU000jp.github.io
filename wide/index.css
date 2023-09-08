@@ -149,7 +149,7 @@ div#container label>div#lane div.lane-item-inner div.lane-status {
   width: 100%;
   justify-content: center;
   border-bottom: dotted 1px;
-  user-select: none!important;
+  user-select: none !important;
 }
 
 div#container label>div#lane div.lane-item-inner div.lane-status p.lane-status-name {
@@ -250,4 +250,10 @@ div#doneList {
   opacity: 0.4;
   -ms-filter: "progid:DXImageTransform.Microsoft.Alpha(Opacity=40)";
   filter: alpha(opacity=40);
+}
+
+button.add-button {
+  position: absolute;
+  top: 1px;
+  left: 1px;
 }
