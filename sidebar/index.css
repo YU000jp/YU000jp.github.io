@@ -12,26 +12,21 @@
     --grayColor: hsla(0, 0%, 50%, 0.2);
   }
 
-  div {
-    &#container>label>div#lane {
-      border: var(--taskItemBorderColor) solid 1px;
-    }
-
-    &#lane {
-      background: #202124;
-    }
+  div#container>label>div#lane {
+    border: var(--taskItemBorderColor) solid 1px;
   }
 
-  p {
-    &#saturday {
-      color: #4470FF;
-    }
-
-    &#sunday {
-      color: #FF5F5F;
-    }
+  p#saturday {
+    color: #4470FF;
   }
 
+  p#sunday {
+    color: #FF5F5F;
+  }
+
+  div#lane {
+    background: #202124;
+  }
 }
 
 @media(prefers-color-scheme:light) {
@@ -52,21 +47,19 @@
     border: solid 1px;
   }
 
-  p {
-    &#saturday {
-      color: #0000FF;
-    }
+  p#saturday {
+    color: #0000FF;
+  }
 
-    &#sunday {
-      color: #FF0000;
-    }
+  p#sunday {
+    color: #FF0000;
   }
 }
 
-p:is(#saturday, #sunday) {
+p#saturday,
+p#sunday {
   font-weight: bold;
 }
-
 
 @media screen and (max-height:1080px) {
   body {
@@ -89,61 +82,61 @@ div#container {
   padding: 1px;
   box-sizing: border-box;
 
-  &>form#createForm {
+  >form#createForm {
     padding: 2px;
     display: flex;
     justify-content: center;
 
-    &>input#title {
+    >input#title {
       box-sizing: border-box;
       width: 260px;
       border: 1px solid;
     }
 
-    &>button {
+    >button {
       cursor: pointer;
       border: 0;
     }
 
-    &>input#title,
-    &>button {
+    >input#title,
+    >button {
       padding: 4px;
       border-radius: 5px;
 
     }
   }
 
-  &>label>div#lane {
+  >label>div#lane {
     display: flex;
     flex-direction: column;
     user-select: none;
     border-radius: .4em;
 
-    &>div.lane-item {
+    >div.lane-item {
       border-bottom: dotted 1px;
 
-      &>div.lane-item-inner {
+      >div.lane-item-inner {
         display: flex;
         height: 100%;
 
-        &>div.tasks {
+        >div.tasks {
           flex: 1;
           margin: 0;
           padding: 1px;
           list-style: none;
 
-          &>:not(:first-child) {
+          >:not(:first-child) {
             margin-top: 4px;
           }
         }
 
-        &>div.lane-status {
+        >div.lane-status {
           display: flex;
           padding: 1.8em 10px 1.8em 10px;
           writing-mode: vertical-rl;
           border-right: dotted 1px;
 
-          &>p.lane-status-name {
+          >p.lane-status-name {
             margin: 0.3em;
             letter-spacing: 0.3em;
 
@@ -152,7 +145,7 @@ div#container {
             }
           }
 
-          &>button#deleteAllDoneTask {
+          >button#deleteAllDoneTask {
             cursor: pointer;
             margin-top: 3em;
           }
@@ -187,7 +180,7 @@ div.task-item {
     cursor: pointer;
   }
 
-  &>span {
+  >span {
     overflow: hidden;
     display: table-cell;
     word-wrap: break-word;
@@ -204,7 +197,7 @@ div.task-item {
 
   }
 
-  &>button {
+  >button {
     display: none;
     margin-left: auto;
     font-size: .88em;
