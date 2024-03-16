@@ -7,25 +7,30 @@
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
 <script>
 $(document).ready(function(){
-    $.getJSON("https://raw.githubusercontent.com/YU000jp/fork-logseq-marketplace/main/plugins.json", function(data){
-        var items = [];
-        items.push("<table>");
-        // Create table header
-        items.push("<tr>");
-        $.each(data[0], function(key, val){
-            items.push("<th>" + key + "</th>");
-        });
-        items.push("</tr>");
-        // Create table rows
-        $.each(data, function(index, item){
+    $.ajax({
+        url: "https://raw.githubusercontent.com/YU000jp/fork-logseq-marketplace/main/stats.json",
+        dataType: "jsonp",
+        jsonpCallback: "callback",
+        success: function(data){
+            var items = [];
+            items.push("<table>");
+            // Create table header
             items.push("<tr>");
-            $.each(item, function(key, val){
-                items.push("<td>" + val + "</td>");
+            $.each(data[0], function(key, val){
+                items.push("<th>" + key + "</th>");
             });
             items.push("</tr>");
-        });
-        items.push("</table>");
-        $(items.join("")).appendTo("body");
+            // Create table rows
+            $.each(data, function(index, item){
+                items.push("<tr>");
+                $.each(item, function(key, val){
+                    items.push("<td>" + val + "</td>");
+                });
+                items.push("</tr>");
+            });
+            items.push("</table>");
+            $(items.join("")).appendTo("body");
+        }
     });
 });
 </script>
