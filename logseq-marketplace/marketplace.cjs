@@ -24,13 +24,13 @@ async function downloadIcon(iconURL, id, icon) {
     }
 }
 
-async function downloadIcons(packages) {
+function downloadIcons(packages) {
     try {
         for (const pkg of packages) {
             const { icon, id } = pkg;
             if (icon) {
                 const iconURL = `https://github.com/YU000jp/fork-logseq-marketplace/raw/main/packages/${id}/${icon}`;
-                await downloadIcon(iconURL, id, icon);
+                downloadIcon(iconURL, id, icon);
             }
         }
     } catch (error) {
@@ -52,21 +52,43 @@ async function createTablesByTheme() {
     const themeYesPackages = sortedPackages.filter(pkg => pkg.theme);
     const themeNoPackages = sortedPackages.filter(pkg => !pkg.theme);
 
-    // Download icons
-    await downloadIcons(sortedPackages);
 
-    const lastUpdate = new Date(pluginsData.datetime).toLocaleString();
 
-    // Create tables for theme Yes and No separately
-    const themeYesTable = createTable(themeYesPackages, 'theme', lastUpdate);
-    const themeNoTable = createTable(themeNoPackages, 'plugin', lastUpdate);
+    //pluginData.datetimeをtxtファイルから読み込む
+    fs.readFile('lastUpdate.txt', 'utf8', (err, data) => {
+        if (err) {
+            console.error(`Error reading lastUpdate.txt:`, err);
+            return;
+        }
 
-    // Write HTML files
-    writeHTMLFile(themeYesTable, 'theme_table.html', 'theme');
-    writeHTMLFile(themeNoTable, 'plugin_table.html', 'plugin');
+        //古い値と新しい値が同じだったら終了
+        if (pluginsData.datetime.toString() === data.toString()) {
+            console.log(`Not need update. exit.`);
+        } else {
+            // pluginData.datetimeをtxtファイルに書き込む
+            fs.writeFile('lastUpdate.txt', pluginsData.datetime.toString(), (err) => {
+                if (err) {
+                    console.error(`Error writing lastUpdate.txt:`, err);
+                    return;
+                }
+            });
+
+            // JSONからlastUpdateを取得する
+            const lastUpdate = new Date(pluginsData.datetime).toLocaleString();
+            // Create tables for theme Yes and No separately
+            const themeYesTable = createTable(themeYesPackages, 'theme', lastUpdate);
+            const themeNoTable = createTable(themeNoPackages, 'plugin', lastUpdate);
+
+            // Write HTML files
+            writeHTMLFile(themeYesTable, 'theme_table.html', 'theme');
+            writeHTMLFile(themeNoTable, 'plugin_table.html', 'plugin');
+            // Download icons
+            downloadIcons(sortedPackages);
+        }
+    });
 }
 
-function createTable(packages, theme,lastUpdate) {
+function createTable(packages, theme, lastUpdate) {
     // Create table header
     let tableContent = `
     <h2>Logseq ${theme} table (➕${theme === "theme" ? '<a href="./plugin_table.html">Plugin</a>' : '<a href="./theme_table.html">Theme</a>'})</h2>
