@@ -29,7 +29,7 @@ function downloadIcons(packages) {
         for (const pkg of packages) {
             const { icon, id } = pkg;
             if (icon) {
-                const iconURL = `https://github.com/YU000jp/fork-logseq-marketplace/raw/main/packages/${id}/${icon}`;
+                const iconURL = `https://github.com/logseq/marketplace/raw/main/packages/${id}/${icon}`;
                 downloadIcon(iconURL, id, icon);
             }
         }
