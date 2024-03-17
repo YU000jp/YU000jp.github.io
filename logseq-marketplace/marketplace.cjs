@@ -53,9 +53,14 @@ async function createTablesByTheme() {
     const themeNoPackages = sortedPackages.filter(pkg => !pkg.theme);
 
 
+    const path = 'logseq-marketplace/lastUpdate.txt'; //github Actionsで実行する場合は、logseq-marketplace/lastUpdate.txtにする
+
+    //const path = 'lastUpdate.txt'; //ローカルで実行する場合は、lastUpdate.txtにする
+
+
 
     //pluginData.datetimeをtxtファイルから読み込む
-    fs.readFile('logseq-marketplace/lastUpdate.txt', 'utf8', (err, data) => { //github Actionsで実行する場合は、logseq-marketplace/lastUpdate.txtにする
+    fs.readFile(path, 'utf8', (err, data) => {
         if (err) {
             console.error(`Error reading lastUpdate.txt:`, err);
             return;
@@ -66,7 +71,7 @@ async function createTablesByTheme() {
             console.log(`Not need update. exit.`);
         } else {
             // pluginData.datetimeをtxtファイルに書き込む
-            fs.writeFile('logseq-marketplace/lastUpdate.txt', pluginsData.datetime.toString(), (err) => { //github Actionsで実行する場合は、logseq-marketplace/lastUpdate.txtにする
+            fs.writeFile(path, pluginsData.datetime.toString(), (err) => {
                 if (err) {
                     console.error(`Error writing lastUpdate.txt:`, err);
                     return;
@@ -92,20 +97,21 @@ function createTable(packages, theme, lastUpdate) {
     // Create table header
     let tableContent = `
     <h2>Logseq ${theme} table (➕${theme === "theme" ? '<a href="./plugin_table.html">Plugin</a>' : '<a href="./theme_table.html">Theme</a>'})</h2>
-    <p>This is a site for checking plugins from the browser. Can be sorted by title or newest(Click "Number"). Notes and checks by the user are saved in WebStorage (the device only). Copy the title using the copy button and input it on Logseq.</p>
-    <p>Last updated: ${lastUpdate}</p>
+    <p>This is a site for checking plugins from the browser. Can be sorted by title or newest(Click "#"). Notes and checks by the user are saved in WebStorage (the device only). Copy the title using the copy button and input it on Logseq.</p>
+    <p>Last updated: ${lastUpdate} / Delete checked lines<input type="checkbox" onclick="deleteLines(this)"/></p>
 
     <table border="1" id="target">
         <thead>
-            <tr><th>Number</th>
+            <tr>
+            <th title="The smaller the number, the older">#</th>
             <th>Repo</th>
-            <th>Icon</th>
+            <th></th>
             <th>Title</th>
-            <th>Copy</th>
+            <th></th>
             <th>Description / User Notes</th>
             <th>User Check</th>
-            <th>Author</th>
-            <th>Added Date</th></tr>
+            <th>Author / Added</th>
+            </tr>
         </thead>
         <tbody>
         `;
@@ -126,10 +132,10 @@ function createTable(packages, theme, lastUpdate) {
         const number = packages.length - index;
         tableContent += `
         <tr>
-            <th translate="no">
-                ${number}
+            <th translate="no" title="${addedDate}">
+                <small>${number}</small>
             </th>
-            <th translate="no">
+            <th translate="no" title="${repo}">
                 <img alt="GitHub Repo stars" src="https://img.shields.io/github/stars/${repo}?style=for-the-badge" loading="lazy"/><br/>
                 ${theme === 'theme' ? "" : `<img alt="GitHub Downloads (all assets, all releases)" src="https://img.shields.io/github/downloads/${repo}/total?style=for-the-badge" loading="lazy" /><br/>`}
                 <img alt="GitHub last commit" src="https://img.shields.io/github/last-commit/${repo}?style=for-the-badge" loading="lazy"/>
@@ -151,10 +157,8 @@ function createTable(packages, theme, lastUpdate) {
                 <input type="checkbox" onclick="toggleTaskConfirmation(this)" name="${id}"/>
             </td>
             <td translate="no">
-                ${authorLinkWithAt}
-            </td>
-            <td translate="no">
-            ${addedDate}
+                ${authorLinkWithAt}<br/>
+                <small>${addedDate}</small>
             </td>
         </tr>
         `;
@@ -219,6 +223,10 @@ function writeHTMLFile(htmlContent, filename, theme) {
                 , 1000);
                 localStorage.setItem("textarea-"+input.name, input.value);
             }
+            function deleteLines(button){
+                document.body.classList.toggle("deleteLines");
+            }
+
             // Load saved data from Web Storage
             document.addEventListener('DOMContentLoaded', function() {
                 const buttons = document.querySelectorAll('input[type="checkbox"]');
@@ -251,10 +259,6 @@ function writeHTMLFile(htmlContent, filename, theme) {
         <link rel="stylesheet" href="marketplace.css"/>
         <script type="text/javascript" src="https://cdn.datatables.net/1.11.5/js/jquery.dataTables.min.js"></script>
         <link rel="icon" href="https://blog.logseq.com/content/images/size/w256h256/2022/04/logseq-favicon.png" type="image/png"/>
-        <script src="https://cdn.jsdelivr.net/npm/darkmode-js@1.5.7/lib/darkmode-js.min.js"></script>
-        <script>
-            new Darkmode().showWidget();
-        </script>
     </head>
     <body>
     ${htmlContent}

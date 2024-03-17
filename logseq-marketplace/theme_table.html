@@ -52,6 +52,10 @@
                 , 1000);
                 localStorage.setItem("textarea-"+input.name, input.value);
             }
+            function deleteLines(button){
+                document.body.classList.toggle("deleteLines");
+            }
+
             // Load saved data from Web Storage
             document.addEventListener('DOMContentLoaded', function() {
                 const buttons = document.querySelectorAll('input[type="checkbox"]');
@@ -83,33 +87,34 @@
         <link rel="stylesheet" href="https://cdn.datatables.net/1.11.5/css/jquery.dataTables.min.css">
         <link rel="stylesheet" href="marketplace.css"/>
         <script type="text/javascript" src="https://cdn.datatables.net/1.11.5/js/jquery.dataTables.min.js"></script>
-        <link rel="icon" href="https://blog.logseq.com/content/images/size/w256h256/2022/04/logseq-favicon.png" type="image/png">
+        <link rel="icon" href="https://blog.logseq.com/content/images/size/w256h256/2022/04/logseq-favicon.png" type="image/png"/>
     </head>
     <body>
     
     <h2>Logseq theme table (➕<a href="./plugin_table.html">Plugin</a>)</h2>
-    <p>This is a site for checking plugins from the browser. Can be sorted by title or newest(Click "Number"). Notes and checks by the user are saved in WebStorage (the device only). Copy the title using the copy button and input it on Logseq.</p>
-    <p>Last updated: 2024/3/11 0:26:29</p>
+    <p>This is a site for checking plugins from the browser. Can be sorted by title or newest(Click "#"). Notes and checks by the user are saved in WebStorage (the device only). Copy the title using the copy button and input it on Logseq.</p>
+    <p>Last updated: 2024/3/11 0:26:29 / Delete checked lines<input type="checkbox" onclick="deleteLines(this)"/></p>
 
     <table border="1" id="target">
         <thead>
-            <tr><th>Number</th>
+            <tr>
+            <th title="The smaller the number, the older">#</th>
             <th>Repo</th>
-            <th>Icon</th>
+            <th></th>
             <th>Title</th>
-            <th>Copy</th>
+            <th></th>
             <th>Description / User Notes</th>
             <th>User Check</th>
-            <th>Author</th>
-            <th>Added Date</th></tr>
+            <th>Author / Added</th>
+            </tr>
         </thead>
         <tbody>
         
         <tr>
-            <th translate="no">
-                49
+            <th translate="no" title="2024/1/27">
+                <small>49</small>
             </th>
-            <th translate="no">
+            <th translate="no" title="khoulihan/logseq-everforest-theme">
                 <img alt="GitHub Repo stars" src="https://img.shields.io/github/stars/khoulihan/logseq-everforest-theme?style=for-the-badge" loading="lazy"/><br/>
                 
                 <img alt="GitHub last commit" src="https://img.shields.io/github/last-commit/khoulihan/logseq-everforest-theme?style=for-the-badge" loading="lazy"/>
@@ -131,18 +136,16 @@
                 <input type="checkbox" onclick="toggleTaskConfirmation(this)" name="logseq-everforest-theme"/>
             </td>
             <td translate="no">
-                <a href="https://github.com/khoulihan">@Kevin Houlihan</a>
-            </td>
-            <td translate="no">
-            2024/1/27
+                <a href="https://github.com/khoulihan">@Kevin Houlihan</a><br/>
+                <small>2024/1/27</small>
             </td>
         </tr>
         
         <tr>
-            <th translate="no">
-                48
+            <th translate="no" title="2023/12/20">
+                <small>48</small>
             </th>
-            <th translate="no">
+            <th translate="no" title="femto-code/logseq-one-theme">
                 <img alt="GitHub Repo stars" src="https://img.shields.io/github/stars/femto-code/logseq-one-theme?style=for-the-badge" loading="lazy"/><br/>
                 
                 <img alt="GitHub last commit" src="https://img.shields.io/github/last-commit/femto-code/logseq-one-theme?style=for-the-badge" loading="lazy"/>
@@ -164,18 +167,16 @@
                 <input type="checkbox" onclick="toggleTaskConfirmation(this)" name="logseq-one-theme"/>
             </td>
             <td translate="no">
-                <a href="https://github.com/femto-code">@femto-code</a>
-            </td>
-            <td translate="no">
-            2023/12/20
+                <a href="https://github.com/femto-code">@femto-code</a><br/>
+                <small>2023/12/20</small>
             </td>
         </tr>
         
         <tr>
-            <th translate="no">
-                47
+            <th translate="no" title="2023/11/18">
+                <small>47</small>
             </th>
-            <th translate="no">
+            <th translate="no" title="stan-voo/logseq-slavsko-theme">
                 <img alt="GitHub Repo stars" src="https://img.shields.io/github/stars/stan-voo/logseq-slavsko-theme?style=for-the-badge" loading="lazy"/><br/>
                 
                 <img alt="GitHub last commit" src="https://img.shields.io/github/last-commit/stan-voo/logseq-slavsko-theme?style=for-the-badge" loading="lazy"/>
@@ -197,18 +198,16 @@
                 <input type="checkbox" onclick="toggleTaskConfirmation(this)" name="logseq-slavsko-theme"/>
             </td>
             <td translate="no">
-                <a href="https://github.com/stan-voo">@Stan Voo</a>
-            </td>
-            <td translate="no">
-            2023/11/18
+                <a href="https://github.com/stan-voo">@Stan Voo</a><br/>
+                <small>2023/11/18</small>
             </td>
         </tr>
         
         <tr>
-            <th translate="no">
-                46
+            <th translate="no" title="2023/8/3">
+                <small>46</small>
             </th>
-            <th translate="no">
+            <th translate="no" title="tenset-security/logseq-tenset-theme">
                 <img alt="GitHub Repo stars" src="https://img.shields.io/github/stars/tenset-security/logseq-tenset-theme?style=for-the-badge" loading="lazy"/><br/>
                 
                 <img alt="GitHub last commit" src="https://img.shields.io/github/last-commit/tenset-security/logseq-tenset-theme?style=for-the-badge" loading="lazy"/>
@@ -230,18 +229,16 @@
                 <input type="checkbox" onclick="toggleTaskConfirmation(this)" name="logseq-tenset-theme"/>
             </td>
             <td translate="no">
-                <a href="https://github.com/tenset-security">@Tenset</a>
-            </td>
-            <td translate="no">
-            2023/8/3
+                <a href="https://github.com/tenset-security">@Tenset</a><br/>
+                <small>2023/8/3</small>
             </td>
         </tr>
         
         <tr>
-            <th translate="no">
-                45
+            <th translate="no" title="2023/7/27">
+                <small>45</small>
             </th>
-            <th translate="no">
+            <th translate="no" title="YU000jp/logseq-theme-classic-dark-theme-pack">
                 <img alt="GitHub Repo stars" src="https://img.shields.io/github/stars/YU000jp/logseq-theme-classic-dark-theme-pack?style=for-the-badge" loading="lazy"/><br/>
                 
                 <img alt="GitHub last commit" src="https://img.shields.io/github/last-commit/YU000jp/logseq-theme-classic-dark-theme-pack?style=for-the-badge" loading="lazy"/>
@@ -263,18 +260,16 @@
                 <input type="checkbox" onclick="toggleTaskConfirmation(this)" name="logseq-theme-classic-dark-theme-pack"/>
             </td>
             <td translate="no">
-                <a href="https://github.com/YU000jp">@YU000jp</a>
-            </td>
-            <td translate="no">
-            2023/7/27
+                <a href="https://github.com/YU000jp">@YU000jp</a><br/>
+                <small>2023/7/27</small>
             </td>
         </tr>
         
         <tr>
-            <th translate="no">
-                44
+            <th translate="no" title="2023/6/20">
+                <small>44</small>
             </th>
-            <th translate="no">
+            <th translate="no" title="Sh00Fly/logseq-bear-cub-theme">
                 <img alt="GitHub Repo stars" src="https://img.shields.io/github/stars/Sh00Fly/logseq-bear-cub-theme?style=for-the-badge" loading="lazy"/><br/>
                 
                 <img alt="GitHub last commit" src="https://img.shields.io/github/last-commit/Sh00Fly/logseq-bear-cub-theme?style=for-the-badge" loading="lazy"/>
@@ -296,18 +291,16 @@
                 <input type="checkbox" onclick="toggleTaskConfirmation(this)" name="logseq-bear-cub-theme"/>
             </td>
             <td translate="no">
-                <a href="https://github.com/Sh00Fly">@Sh00Fly</a>
-            </td>
-            <td translate="no">
-            2023/6/20
+                <a href="https://github.com/Sh00Fly">@Sh00Fly</a><br/>
+                <small>2023/6/20</small>
             </td>
         </tr>
         
         <tr>
-            <th translate="no">
-                43
+            <th translate="no" title="2023/5/25">
+                <small>43</small>
             </th>
-            <th translate="no">
+            <th translate="no" title="henices/logseq-flow-nord">
                 <img alt="GitHub Repo stars" src="https://img.shields.io/github/stars/henices/logseq-flow-nord?style=for-the-badge" loading="lazy"/><br/>
                 
                 <img alt="GitHub last commit" src="https://img.shields.io/github/last-commit/henices/logseq-flow-nord?style=for-the-badge" loading="lazy"/>
@@ -329,18 +322,16 @@
                 <input type="checkbox" onclick="toggleTaskConfirmation(this)" name="logseq-flow-nord-theme"/>
             </td>
             <td translate="no">
-                <a href="https://github.com/henices">@nmartin84 and henices</a>
-            </td>
-            <td translate="no">
-            2023/5/25
+                <a href="https://github.com/henices">@nmartin84 and henices</a><br/>
+                <small>2023/5/25</small>
             </td>
         </tr>
         
         <tr>
-            <th translate="no">
-                42
+            <th translate="no" title="2023/5/21">
+                <small>42</small>
             </th>
-            <th translate="no">
+            <th translate="no" title="Bad3r/Logseq-Nord-Theme">
                 <img alt="GitHub Repo stars" src="https://img.shields.io/github/stars/Bad3r/Logseq-Nord-Theme?style=for-the-badge" loading="lazy"/><br/>
                 
                 <img alt="GitHub last commit" src="https://img.shields.io/github/last-commit/Bad3r/Logseq-Nord-Theme?style=for-the-badge" loading="lazy"/>
@@ -362,18 +353,16 @@
                 <input type="checkbox" onclick="toggleTaskConfirmation(this)" name="nord-theme"/>
             </td>
             <td translate="no">
-                <a href="https://github.com/Bad3r">@Bad3r</a>
-            </td>
-            <td translate="no">
-            2023/5/21
+                <a href="https://github.com/Bad3r">@Bad3r</a><br/>
+                <small>2023/5/21</small>
             </td>
         </tr>
         
         <tr>
-            <th translate="no">
-                41
+            <th translate="no" title="2023/4/29">
+                <small>41</small>
             </th>
-            <th translate="no">
+            <th translate="no" title="candideu/logseq-eink-plus">
                 <img alt="GitHub Repo stars" src="https://img.shields.io/github/stars/candideu/logseq-eink-plus?style=for-the-badge" loading="lazy"/><br/>
                 
                 <img alt="GitHub last commit" src="https://img.shields.io/github/last-commit/candideu/logseq-eink-plus?style=for-the-badge" loading="lazy"/>
@@ -395,18 +384,16 @@
                 <input type="checkbox" onclick="toggleTaskConfirmation(this)" name="logseq-eink-plus"/>
             </td>
             <td translate="no">
-                <a href="https://github.com/candideu">@candide, DiamondYuan</a>
-            </td>
-            <td translate="no">
-            2023/4/29
+                <a href="https://github.com/candideu">@candide, DiamondYuan</a><br/>
+                <small>2023/4/29</small>
             </td>
         </tr>
         
         <tr>
-            <th translate="no">
-                40
+            <th translate="no" title="2023/3/15">
+                <small>40</small>
             </th>
-            <th translate="no">
+            <th translate="no" title="natsustan/logseq-reflect-theme">
                 <img alt="GitHub Repo stars" src="https://img.shields.io/github/stars/natsustan/logseq-reflect-theme?style=for-the-badge" loading="lazy"/><br/>
                 
                 <img alt="GitHub last commit" src="https://img.shields.io/github/last-commit/natsustan/logseq-reflect-theme?style=for-the-badge" loading="lazy"/>
@@ -428,18 +415,16 @@
                 <input type="checkbox" onclick="toggleTaskConfirmation(this)" name="logseq-reflect-theme"/>
             </td>
             <td translate="no">
-                <a href="https://github.com/natsustan">@natsustan</a>
-            </td>
-            <td translate="no">
-            2023/3/15
+                <a href="https://github.com/natsustan">@natsustan</a><br/>
+                <small>2023/3/15</small>
             </td>
         </tr>
         
         <tr>
-            <th translate="no">
-                39
+            <th translate="no" title="2023/2/11">
+                <small>39</small>
             </th>
-            <th translate="no">
+            <th translate="no" title="tzcl/logseq-monokai">
                 <img alt="GitHub Repo stars" src="https://img.shields.io/github/stars/tzcl/logseq-monokai?style=for-the-badge" loading="lazy"/><br/>
                 
                 <img alt="GitHub last commit" src="https://img.shields.io/github/last-commit/tzcl/logseq-monokai?style=for-the-badge" loading="lazy"/>
@@ -461,18 +446,16 @@
                 <input type="checkbox" onclick="toggleTaskConfirmation(this)" name="logseq-monokai"/>
             </td>
             <td translate="no">
-                <a href="https://github.com/tzcl">@Toby Law</a>
-            </td>
-            <td translate="no">
-            2023/2/11
+                <a href="https://github.com/tzcl">@Toby Law</a><br/>
+                <small>2023/2/11</small>
             </td>
         </tr>
         
         <tr>
-            <th translate="no">
-                38
+            <th translate="no" title="2023/2/1">
+                <small>38</small>
             </th>
-            <th translate="no">
+            <th translate="no" title="jonesmelton/logseq-tufte-theme">
                 <img alt="GitHub Repo stars" src="https://img.shields.io/github/stars/jonesmelton/logseq-tufte-theme?style=for-the-badge" loading="lazy"/><br/>
                 
                 <img alt="GitHub last commit" src="https://img.shields.io/github/last-commit/jonesmelton/logseq-tufte-theme?style=for-the-badge" loading="lazy"/>
@@ -494,18 +477,16 @@
                 <input type="checkbox" onclick="toggleTaskConfirmation(this)" name="tufte-theme"/>
             </td>
             <td translate="no">
-                <a href="https://github.com/jonesmelton">@jones melton</a>
-            </td>
-            <td translate="no">
-            2023/2/1
+                <a href="https://github.com/jonesmelton">@jones melton</a><br/>
+                <small>2023/2/1</small>
             </td>
         </tr>
         
         <tr>
-            <th translate="no">
-                37
+            <th translate="no" title="2023/1/30">
+                <small>37</small>
             </th>
-            <th translate="no">
+            <th translate="no" title="catppuccin/logseq">
                 <img alt="GitHub Repo stars" src="https://img.shields.io/github/stars/catppuccin/logseq?style=for-the-badge" loading="lazy"/><br/>
                 
                 <img alt="GitHub last commit" src="https://img.shields.io/github/last-commit/catppuccin/logseq?style=for-the-badge" loading="lazy"/>
@@ -527,18 +508,16 @@
                 <input type="checkbox" onclick="toggleTaskConfirmation(this)" name="logseq-catppuccin"/>
             </td>
             <td translate="no">
-                <a href="https://github.com/catppuccin">@Soumik </a>
-            </td>
-            <td translate="no">
-            2023/1/30
+                <a href="https://github.com/catppuccin">@Soumik </a><br/>
+                <small>2023/1/30</small>
             </td>
         </tr>
         
         <tr>
-            <th translate="no">
-                36
+            <th translate="no" title="2022/12/10">
+                <small>36</small>
             </th>
-            <th translate="no">
+            <th translate="no" title="UNICKCHENG/logseq-developer-theme">
                 <img alt="GitHub Repo stars" src="https://img.shields.io/github/stars/UNICKCHENG/logseq-developer-theme?style=for-the-badge" loading="lazy"/><br/>
                 
                 <img alt="GitHub last commit" src="https://img.shields.io/github/last-commit/UNICKCHENG/logseq-developer-theme?style=for-the-badge" loading="lazy"/>
@@ -560,18 +539,16 @@
                 <input type="checkbox" onclick="toggleTaskConfirmation(this)" name="logseq-developer-theme"/>
             </td>
             <td translate="no">
-                <a href="https://github.com/UNICKCHENG">@unickcheng</a>
-            </td>
-            <td translate="no">
-            2022/12/10
+                <a href="https://github.com/UNICKCHENG">@unickcheng</a><br/>
+                <small>2022/12/10</small>
             </td>
         </tr>
         
         <tr>
-            <th translate="no">
-                35
+            <th translate="no" title="2022/11/12">
+                <small>35</small>
             </th>
-            <th translate="no">
+            <th translate="no" title="stdword/logseq-bujo-theme">
                 <img alt="GitHub Repo stars" src="https://img.shields.io/github/stars/stdword/logseq-bujo-theme?style=for-the-badge" loading="lazy"/><br/>
                 
                 <img alt="GitHub last commit" src="https://img.shields.io/github/last-commit/stdword/logseq-bujo-theme?style=for-the-badge" loading="lazy"/>
@@ -593,18 +570,16 @@
                 <input type="checkbox" onclick="toggleTaskConfirmation(this)" name="logseq-bujo-theme"/>
             </td>
             <td translate="no">
-                <a href="https://github.com/stdword">@PiotrSss & stdword</a>
-            </td>
-            <td translate="no">
-            2022/11/12
+                <a href="https://github.com/stdword">@PiotrSss & stdword</a><br/>
+                <small>2022/11/12</small>
             </td>
         </tr>
         
         <tr>
-            <th translate="no">
-                34
+            <th translate="no" title="2022/9/29">
+                <small>34</small>
             </th>
-            <th translate="no">
+            <th translate="no" title="andyburris/logseq-arc-theme">
                 <img alt="GitHub Repo stars" src="https://img.shields.io/github/stars/andyburris/logseq-arc-theme?style=for-the-badge" loading="lazy"/><br/>
                 
                 <img alt="GitHub last commit" src="https://img.shields.io/github/last-commit/andyburris/logseq-arc-theme?style=for-the-badge" loading="lazy"/>
@@ -626,18 +601,16 @@
                 <input type="checkbox" onclick="toggleTaskConfirmation(this)" name="logseq-arc-theme"/>
             </td>
             <td translate="no">
-                <a href="https://github.com/andyburris">@andyburris</a>
-            </td>
-            <td translate="no">
-            2022/9/29
+                <a href="https://github.com/andyburris">@andyburris</a><br/>
+                <small>2022/9/29</small>
             </td>
         </tr>
         
         <tr>
-            <th translate="no">
-                33
+            <th translate="no" title="2022/9/19">
+                <small>33</small>
             </th>
-            <th translate="no">
+            <th translate="no" title="Mat4m0/logseq-atmos-theme">
                 <img alt="GitHub Repo stars" src="https://img.shields.io/github/stars/Mat4m0/logseq-atmos-theme?style=for-the-badge" loading="lazy"/><br/>
                 
                 <img alt="GitHub last commit" src="https://img.shields.io/github/last-commit/Mat4m0/logseq-atmos-theme?style=for-the-badge" loading="lazy"/>
@@ -659,18 +632,16 @@
                 <input type="checkbox" onclick="toggleTaskConfirmation(this)" name="logseq-atmos-theme"/>
             </td>
             <td translate="no">
-                <a href="https://github.com/Mat4m0">@Mat4m0</a>
-            </td>
-            <td translate="no">
-            2022/9/19
+                <a href="https://github.com/Mat4m0">@Mat4m0</a><br/>
+                <small>2022/9/19</small>
             </td>
         </tr>
         
         <tr>
-            <th translate="no">
-                32
+            <th translate="no" title="2022/7/28">
+                <small>32</small>
             </th>
-            <th translate="no">
+            <th translate="no" title="gavinmn/logseq-luma">
                 <img alt="GitHub Repo stars" src="https://img.shields.io/github/stars/gavinmn/logseq-luma?style=for-the-badge" loading="lazy"/><br/>
                 
                 <img alt="GitHub last commit" src="https://img.shields.io/github/last-commit/gavinmn/logseq-luma?style=for-the-badge" loading="lazy"/>
@@ -692,18 +663,16 @@
                 <input type="checkbox" onclick="toggleTaskConfirmation(this)" name="logseq-luma"/>
             </td>
             <td translate="no">
-                <a href="https://github.com/gavinmn">@gavmn</a>
-            </td>
-            <td translate="no">
-            2022/7/28
+                <a href="https://github.com/gavinmn">@gavmn</a><br/>
+                <small>2022/7/28</small>
             </td>
         </tr>
         
         <tr>
-            <th translate="no">
-                31
+            <th translate="no" title="2022/5/29">
+                <small>31</small>
             </th>
-            <th translate="no">
+            <th translate="no" title="hisea/logseq-ozean-theme">
                 <img alt="GitHub Repo stars" src="https://img.shields.io/github/stars/hisea/logseq-ozean-theme?style=for-the-badge" loading="lazy"/><br/>
                 
                 <img alt="GitHub last commit" src="https://img.shields.io/github/last-commit/hisea/logseq-ozean-theme?style=for-the-badge" loading="lazy"/>
@@ -725,18 +694,16 @@
                 <input type="checkbox" onclick="toggleTaskConfirmation(this)" name="logseq-ozean-theme"/>
             </td>
             <td translate="no">
-                <a href="https://github.com/hisea">@hisea</a>
-            </td>
-            <td translate="no">
-            2022/5/29
+                <a href="https://github.com/hisea">@hisea</a><br/>
+                <small>2022/5/29</small>
             </td>
         </tr>
         
         <tr>
-            <th translate="no">
-                30
+            <th translate="no" title="2022/5/26">
+                <small>30</small>
             </th>
-            <th translate="no">
+            <th translate="no" title="mendax1234/logseq-cusgit-theme">
                 <img alt="GitHub Repo stars" src="https://img.shields.io/github/stars/mendax1234/logseq-cusgit-theme?style=for-the-badge" loading="lazy"/><br/>
                 
                 <img alt="GitHub last commit" src="https://img.shields.io/github/last-commit/mendax1234/logseq-cusgit-theme?style=for-the-badge" loading="lazy"/>
@@ -758,18 +725,16 @@
                 <input type="checkbox" onclick="toggleTaskConfirmation(this)" name="logseq-cusgit-theme"/>
             </td>
             <td translate="no">
-                <a href="https://github.com/mendax1234">@Daniel Webber</a>
-            </td>
-            <td translate="no">
-            2022/5/26
+                <a href="https://github.com/mendax1234">@Daniel Webber</a><br/>
+                <small>2022/5/26</small>
             </td>
         </tr>
         
         <tr>
-            <th translate="no">
-                29
+            <th translate="no" title="2022/5/10">
+                <small>29</small>
             </th>
-            <th translate="no">
+            <th translate="no" title="denyskorolkov/logseq-immersion-theme">
                 <img alt="GitHub Repo stars" src="https://img.shields.io/github/stars/denyskorolkov/logseq-immersion-theme?style=for-the-badge" loading="lazy"/><br/>
                 
                 <img alt="GitHub last commit" src="https://img.shields.io/github/last-commit/denyskorolkov/logseq-immersion-theme?style=for-the-badge" loading="lazy"/>
@@ -791,18 +756,16 @@
                 <input type="checkbox" onclick="toggleTaskConfirmation(this)" name="logseq-immersion-theme"/>
             </td>
             <td translate="no">
-                <a href="https://github.com/denyskorolkov">@Denys Korolkov</a>
-            </td>
-            <td translate="no">
-            2022/5/10
+                <a href="https://github.com/denyskorolkov">@Denys Korolkov</a><br/>
+                <small>2022/5/10</small>
             </td>
         </tr>
         
         <tr>
-            <th translate="no">
-                28
+            <th translate="no" title="2022/4/21">
+                <small>28</small>
             </th>
-            <th translate="no">
+            <th translate="no" title="solariz/logseq-neon-theme">
                 <img alt="GitHub Repo stars" src="https://img.shields.io/github/stars/solariz/logseq-neon-theme?style=for-the-badge" loading="lazy"/><br/>
                 
                 <img alt="GitHub last commit" src="https://img.shields.io/github/last-commit/solariz/logseq-neon-theme?style=for-the-badge" loading="lazy"/>
@@ -824,18 +787,16 @@
                 <input type="checkbox" onclick="toggleTaskConfirmation(this)" name="logseq-neon-theme"/>
             </td>
             <td translate="no">
-                <a href="https://github.com/solariz">@solariz</a>
-            </td>
-            <td translate="no">
-            2022/4/21
+                <a href="https://github.com/solariz">@solariz</a><br/>
+                <small>2022/4/21</small>
             </td>
         </tr>
         
         <tr>
-            <th translate="no">
-                27
+            <th translate="no" title="2022/4/9">
+                <small>27</small>
             </th>
-            <th translate="no">
+            <th translate="no" title="dmytrodubinin/Harmony-theme-for-Logseq">
                 <img alt="GitHub Repo stars" src="https://img.shields.io/github/stars/dmytrodubinin/Harmony-theme-for-Logseq?style=for-the-badge" loading="lazy"/><br/>
                 
                 <img alt="GitHub last commit" src="https://img.shields.io/github/last-commit/dmytrodubinin/Harmony-theme-for-Logseq?style=for-the-badge" loading="lazy"/>
@@ -857,18 +818,16 @@
                 <input type="checkbox" onclick="toggleTaskConfirmation(this)" name="harmony-theme"/>
             </td>
             <td translate="no">
-                <a href="https://github.com/dmytrodubinin">@Dmytro Dubinin</a>
-            </td>
-            <td translate="no">
-            2022/4/9
+                <a href="https://github.com/dmytrodubinin">@Dmytro Dubinin</a><br/>
+                <small>2022/4/9</small>
             </td>
         </tr>
         
         <tr>
-            <th translate="no">
-                26
+            <th translate="no" title="2022/3/21">
+                <small>26</small>
             </th>
-            <th translate="no">
+            <th translate="no" title="playerofgames/logseq-mia-theme">
                 <img alt="GitHub Repo stars" src="https://img.shields.io/github/stars/playerofgames/logseq-mia-theme?style=for-the-badge" loading="lazy"/><br/>
                 
                 <img alt="GitHub last commit" src="https://img.shields.io/github/last-commit/playerofgames/logseq-mia-theme?style=for-the-badge" loading="lazy"/>
@@ -890,18 +849,16 @@
                 <input type="checkbox" onclick="toggleTaskConfirmation(this)" name="logseq-mia-theme"/>
             </td>
             <td translate="no">
-                <a href="https://github.com/playerofgames">@playerofgames</a>
-            </td>
-            <td translate="no">
-            2022/3/21
+                <a href="https://github.com/playerofgames">@playerofgames</a><br/>
+                <small>2022/3/21</small>
             </td>
         </tr>
         
         <tr>
-            <th translate="no">
-                25
+            <th translate="no" title="2022/3/12">
+                <small>25</small>
             </th>
-            <th translate="no">
+            <th translate="no" title="g1eny0ung/logseq-github-theme">
                 <img alt="GitHub Repo stars" src="https://img.shields.io/github/stars/g1eny0ung/logseq-github-theme?style=for-the-badge" loading="lazy"/><br/>
                 
                 <img alt="GitHub last commit" src="https://img.shields.io/github/last-commit/g1eny0ung/logseq-github-theme?style=for-the-badge" loading="lazy"/>
@@ -923,18 +880,16 @@
                 <input type="checkbox" onclick="toggleTaskConfirmation(this)" name="logseq-github-theme"/>
             </td>
             <td translate="no">
-                <a href="https://github.com/g1eny0ung">@g1eny0ung</a>
-            </td>
-            <td translate="no">
-            2022/3/12
+                <a href="https://github.com/g1eny0ung">@g1eny0ung</a><br/>
+                <small>2022/3/12</small>
             </td>
         </tr>
         
         <tr>
-            <th translate="no">
-                24
+            <th translate="no" title="2022/2/17">
+                <small>24</small>
             </th>
-            <th translate="no">
+            <th translate="no" title="avoonix/logseq-pink-as-fox-theme">
                 <img alt="GitHub Repo stars" src="https://img.shields.io/github/stars/avoonix/logseq-pink-as-fox-theme?style=for-the-badge" loading="lazy"/><br/>
                 
                 <img alt="GitHub last commit" src="https://img.shields.io/github/last-commit/avoonix/logseq-pink-as-fox-theme?style=for-the-badge" loading="lazy"/>
@@ -956,18 +911,16 @@
                 <input type="checkbox" onclick="toggleTaskConfirmation(this)" name="logseq-pink-as-fox-theme"/>
             </td>
             <td translate="no">
-                <a href="https://github.com/avoonix">@avoonix</a>
-            </td>
-            <td translate="no">
-            2022/2/17
+                <a href="https://github.com/avoonix">@avoonix</a><br/>
+                <small>2022/2/17</small>
             </td>
         </tr>
         
         <tr>
-            <th translate="no">
-                23
+            <th translate="no" title="2022/2/8">
+                <small>23</small>
             </th>
-            <th translate="no">
+            <th translate="no" title="rcvd/logseq-craft-theme">
                 <img alt="GitHub Repo stars" src="https://img.shields.io/github/stars/rcvd/logseq-craft-theme?style=for-the-badge" loading="lazy"/><br/>
                 
                 <img alt="GitHub last commit" src="https://img.shields.io/github/last-commit/rcvd/logseq-craft-theme?style=for-the-badge" loading="lazy"/>
@@ -989,18 +942,16 @@
                 <input type="checkbox" onclick="toggleTaskConfirmation(this)" name="logseq-craft-theme"/>
             </td>
             <td translate="no">
-                <a href="https://github.com/rcvd">@Alexander Rink</a>
-            </td>
-            <td translate="no">
-            2022/2/8
+                <a href="https://github.com/rcvd">@Alexander Rink</a><br/>
+                <small>2022/2/8</small>
             </td>
         </tr>
         
         <tr>
-            <th translate="no">
-                22
+            <th translate="no" title="2022/1/17">
+                <small>22</small>
             </th>
-            <th translate="no">
+            <th translate="no" title="blueteafrog/logseq-gunmetal-theme">
                 <img alt="GitHub Repo stars" src="https://img.shields.io/github/stars/blueteafrog/logseq-gunmetal-theme?style=for-the-badge" loading="lazy"/><br/>
                 
                 <img alt="GitHub last commit" src="https://img.shields.io/github/last-commit/blueteafrog/logseq-gunmetal-theme?style=for-the-badge" loading="lazy"/>
@@ -1022,18 +973,16 @@
                 <input type="checkbox" onclick="toggleTaskConfirmation(this)" name="logseq-gunmetal-theme"/>
             </td>
             <td translate="no">
-                <a href="https://github.com/blueteafrog">@blueteafrog</a>
-            </td>
-            <td translate="no">
-            2022/1/17
+                <a href="https://github.com/blueteafrog">@blueteafrog</a><br/>
+                <small>2022/1/17</small>
             </td>
         </tr>
         
         <tr>
-            <th translate="no">
-                21
+            <th translate="no" title="2022/1/2">
+                <small>21</small>
             </th>
-            <th translate="no">
+            <th translate="no" title="blueteafrog/logseq-mocha-theme">
                 <img alt="GitHub Repo stars" src="https://img.shields.io/github/stars/blueteafrog/logseq-mocha-theme?style=for-the-badge" loading="lazy"/><br/>
                 
                 <img alt="GitHub last commit" src="https://img.shields.io/github/last-commit/blueteafrog/logseq-mocha-theme?style=for-the-badge" loading="lazy"/>
@@ -1055,18 +1004,16 @@
                 <input type="checkbox" onclick="toggleTaskConfirmation(this)" name="logseq-mocha-theme"/>
             </td>
             <td translate="no">
-                <a href="https://github.com/blueteafrog">@blueteafrog</a>
-            </td>
-            <td translate="no">
-            2022/1/2
+                <a href="https://github.com/blueteafrog">@blueteafrog</a><br/>
+                <small>2022/1/2</small>
             </td>
         </tr>
         
         <tr>
-            <th translate="no">
-                20
+            <th translate="no" title="2021/12/31">
+                <small>20</small>
             </th>
-            <th translate="no">
+            <th translate="no" title="joeykhuang/logseq-textbook-theme">
                 <img alt="GitHub Repo stars" src="https://img.shields.io/github/stars/joeykhuang/logseq-textbook-theme?style=for-the-badge" loading="lazy"/><br/>
                 
                 <img alt="GitHub last commit" src="https://img.shields.io/github/last-commit/joeykhuang/logseq-textbook-theme?style=for-the-badge" loading="lazy"/>
@@ -1088,18 +1035,16 @@
                 <input type="checkbox" onclick="toggleTaskConfirmation(this)" name="logseq-textbook-theme"/>
             </td>
             <td translate="no">
-                <a href="https://github.com/joeykhuang">@joeykhuang</a>
-            </td>
-            <td translate="no">
-            2021/12/31
+                <a href="https://github.com/joeykhuang">@joeykhuang</a><br/>
+                <small>2021/12/31</small>
             </td>
         </tr>
         
         <tr>
-            <th translate="no">
-                19
+            <th translate="no" title="2021/12/27">
+                <small>19</small>
             </th>
-            <th translate="no">
+            <th translate="no" title="blueteafrog/logseq-oxfordblue-theme">
                 <img alt="GitHub Repo stars" src="https://img.shields.io/github/stars/blueteafrog/logseq-oxfordblue-theme?style=for-the-badge" loading="lazy"/><br/>
                 
                 <img alt="GitHub last commit" src="https://img.shields.io/github/last-commit/blueteafrog/logseq-oxfordblue-theme?style=for-the-badge" loading="lazy"/>
@@ -1121,18 +1066,16 @@
                 <input type="checkbox" onclick="toggleTaskConfirmation(this)" name="logseq-oxford-blue-theme"/>
             </td>
             <td translate="no">
-                <a href="https://github.com/blueteafrog">@blueteafrog</a>
-            </td>
-            <td translate="no">
-            2021/12/27
+                <a href="https://github.com/blueteafrog">@blueteafrog</a><br/>
+                <small>2021/12/27</small>
             </td>
         </tr>
         
         <tr>
-            <th translate="no">
-                18
+            <th translate="no" title="2021/12/19">
+                <small>18</small>
             </th>
-            <th translate="no">
+            <th translate="no" title="rcvd/logseq-things-theme">
                 <img alt="GitHub Repo stars" src="https://img.shields.io/github/stars/rcvd/logseq-things-theme?style=for-the-badge" loading="lazy"/><br/>
                 
                 <img alt="GitHub last commit" src="https://img.shields.io/github/last-commit/rcvd/logseq-things-theme?style=for-the-badge" loading="lazy"/>
@@ -1154,18 +1097,16 @@
                 <input type="checkbox" onclick="toggleTaskConfirmation(this)" name="logseq-things-theme"/>
             </td>
             <td translate="no">
-                <a href="https://github.com/rcvd">@Alexander Rink</a>
-            </td>
-            <td translate="no">
-            2021/12/19
+                <a href="https://github.com/rcvd">@Alexander Rink</a><br/>
+                <small>2021/12/19</small>
             </td>
         </tr>
         
         <tr>
-            <th translate="no">
-                17
+            <th translate="no" title="2021/12/18">
+                <small>17</small>
             </th>
-            <th translate="no">
+            <th translate="no" title="kirso/logseq-panic-theme">
                 <img alt="GitHub Repo stars" src="https://img.shields.io/github/stars/kirso/logseq-panic-theme?style=for-the-badge" loading="lazy"/><br/>
                 
                 <img alt="GitHub last commit" src="https://img.shields.io/github/last-commit/kirso/logseq-panic-theme?style=for-the-badge" loading="lazy"/>
@@ -1187,18 +1128,16 @@
                 <input type="checkbox" onclick="toggleTaskConfirmation(this)" name="logseq-panic-theme"/>
             </td>
             <td translate="no">
-                <a href="https://github.com/kirso">@kirso</a>
-            </td>
-            <td translate="no">
-            2021/12/18
+                <a href="https://github.com/kirso">@kirso</a><br/>
+                <small>2021/12/18</small>
             </td>
         </tr>
         
         <tr>
-            <th translate="no">
-                16
+            <th translate="no" title="2021/12/16">
+                <small>16</small>
             </th>
-            <th translate="no">
+            <th translate="no" title="rcvd/logseq-quattro-theme">
                 <img alt="GitHub Repo stars" src="https://img.shields.io/github/stars/rcvd/logseq-quattro-theme?style=for-the-badge" loading="lazy"/><br/>
                 
                 <img alt="GitHub last commit" src="https://img.shields.io/github/last-commit/rcvd/logseq-quattro-theme?style=for-the-badge" loading="lazy"/>
@@ -1220,18 +1159,16 @@
                 <input type="checkbox" onclick="toggleTaskConfirmation(this)" name="logseq-quattro-theme"/>
             </td>
             <td translate="no">
-                <a href="https://github.com/rcvd">@Alexander Rink</a>
-            </td>
-            <td translate="no">
-            2021/12/16
+                <a href="https://github.com/rcvd">@Alexander Rink</a><br/>
+                <small>2021/12/16</small>
             </td>
         </tr>
         
         <tr>
-            <th translate="no">
-                15
+            <th translate="no" title="2021/12/15">
+                <small>15</small>
             </th>
-            <th translate="no">
+            <th translate="no" title="ttytm/logseq-allday-theme">
                 <img alt="GitHub Repo stars" src="https://img.shields.io/github/stars/ttytm/logseq-allday-theme?style=for-the-badge" loading="lazy"/><br/>
                 
                 <img alt="GitHub last commit" src="https://img.shields.io/github/last-commit/ttytm/logseq-allday-theme?style=for-the-badge" loading="lazy"/>
@@ -1253,18 +1190,16 @@
                 <input type="checkbox" onclick="toggleTaskConfirmation(this)" name="logseq-allday-theme"/>
             </td>
             <td translate="no">
-                <a href="https://github.com/ttytm">@Turiiya</a>
-            </td>
-            <td translate="no">
-            2021/12/15
+                <a href="https://github.com/ttytm">@Turiiya</a><br/>
+                <small>2021/12/15</small>
             </td>
         </tr>
         
         <tr>
-            <th translate="no">
-                14
+            <th translate="no" title="2021/11/22">
+                <small>14</small>
             </th>
-            <th translate="no">
+            <th translate="no" title="rcvd/logseq-bear-theme">
                 <img alt="GitHub Repo stars" src="https://img.shields.io/github/stars/rcvd/logseq-bear-theme?style=for-the-badge" loading="lazy"/><br/>
                 
                 <img alt="GitHub last commit" src="https://img.shields.io/github/last-commit/rcvd/logseq-bear-theme?style=for-the-badge" loading="lazy"/>
@@ -1286,18 +1221,16 @@
                 <input type="checkbox" onclick="toggleTaskConfirmation(this)" name="logseq-bear-theme"/>
             </td>
             <td translate="no">
-                <a href="https://github.com/rcvd">@Alexander Rink</a>
-            </td>
-            <td translate="no">
-            2021/11/22
+                <a href="https://github.com/rcvd">@Alexander Rink</a><br/>
+                <small>2021/11/22</small>
             </td>
         </tr>
         
         <tr>
-            <th translate="no">
-                13
+            <th translate="no" title="2021/11/16">
+                <small>13</small>
             </th>
-            <th translate="no">
+            <th translate="no" title="crendl/logseq-sepia-theme">
                 <img alt="GitHub Repo stars" src="https://img.shields.io/github/stars/crendl/logseq-sepia-theme?style=for-the-badge" loading="lazy"/><br/>
                 
                 <img alt="GitHub last commit" src="https://img.shields.io/github/last-commit/crendl/logseq-sepia-theme?style=for-the-badge" loading="lazy"/>
@@ -1319,18 +1252,16 @@
                 <input type="checkbox" onclick="toggleTaskConfirmation(this)" name="logseq-sepia-theme"/>
             </td>
             <td translate="no">
-                <a href="https://github.com/crendl">@mschmidtkorth/crendl</a>
-            </td>
-            <td translate="no">
-            2021/11/16
+                <a href="https://github.com/crendl">@mschmidtkorth/crendl</a><br/>
+                <small>2021/11/16</small>
             </td>
         </tr>
         
         <tr>
-            <th translate="no">
-                12
+            <th translate="no" title="2021/11/3">
+                <small>12</small>
             </th>
-            <th translate="no">
+            <th translate="no" title="sethfair/logseq-atlas-theme">
                 <img alt="GitHub Repo stars" src="https://img.shields.io/github/stars/sethfair/logseq-atlas-theme?style=for-the-badge" loading="lazy"/><br/>
                 
                 <img alt="GitHub last commit" src="https://img.shields.io/github/last-commit/sethfair/logseq-atlas-theme?style=for-the-badge" loading="lazy"/>
@@ -1352,18 +1283,16 @@
                 <input type="checkbox" onclick="toggleTaskConfirmation(this)" name="logseq-atlas-theme"/>
             </td>
             <td translate="no">
-                <a href="https://github.com/sethfair">@Seth Fair</a>
-            </td>
-            <td translate="no">
-            2021/11/3
+                <a href="https://github.com/sethfair">@Seth Fair</a><br/>
+                <small>2021/11/3</small>
             </td>
         </tr>
         
         <tr>
-            <th translate="no">
-                11
+            <th translate="no" title="2021/10/24">
+                <small>11</small>
             </th>
-            <th translate="no">
+            <th translate="no" title="wirtzdan/logseq-paper-theme">
                 <img alt="GitHub Repo stars" src="https://img.shields.io/github/stars/wirtzdan/logseq-paper-theme?style=for-the-badge" loading="lazy"/><br/>
                 
                 <img alt="GitHub last commit" src="https://img.shields.io/github/last-commit/wirtzdan/logseq-paper-theme?style=for-the-badge" loading="lazy"/>
@@ -1385,18 +1314,16 @@
                 <input type="checkbox" onclick="toggleTaskConfirmation(this)" name="logseq-paper-theme"/>
             </td>
             <td translate="no">
-                <a href="https://github.com/wirtzdan">@wirtzdan</a>
-            </td>
-            <td translate="no">
-            2021/10/24
+                <a href="https://github.com/wirtzdan">@wirtzdan</a><br/>
+                <small>2021/10/24</small>
             </td>
         </tr>
         
         <tr>
-            <th translate="no">
-                10
+            <th translate="no" title="2021/10/14">
+                <small>10</small>
             </th>
-            <th translate="no">
+            <th translate="no" title="Martin1887/CobraKaiFira">
                 <img alt="GitHub Repo stars" src="https://img.shields.io/github/stars/Martin1887/CobraKaiFira?style=for-the-badge" loading="lazy"/><br/>
                 
                 <img alt="GitHub last commit" src="https://img.shields.io/github/last-commit/Martin1887/CobraKaiFira?style=for-the-badge" loading="lazy"/>
@@ -1418,18 +1345,16 @@
                 <input type="checkbox" onclick="toggleTaskConfirmation(this)" name="cobra-kai-fira-theme"/>
             </td>
             <td translate="no">
-                <a href="https://github.com/Martin1887">@Santi Younger </a>
-            </td>
-            <td translate="no">
-            2021/10/14
+                <a href="https://github.com/Martin1887">@Santi Younger </a><br/>
+                <small>2021/10/14</small>
             </td>
         </tr>
         
         <tr>
-            <th translate="no">
-                9
+            <th translate="no" title="2021/10/14">
+                <small>9</small>
             </th>
-            <th translate="no">
+            <th translate="no" title="santiyounger/Cobra">
                 <img alt="GitHub Repo stars" src="https://img.shields.io/github/stars/santiyounger/Cobra?style=for-the-badge" loading="lazy"/><br/>
                 
                 <img alt="GitHub last commit" src="https://img.shields.io/github/last-commit/santiyounger/Cobra?style=for-the-badge" loading="lazy"/>
@@ -1451,18 +1376,16 @@
                 <input type="checkbox" onclick="toggleTaskConfirmation(this)" name="cobra-theme"/>
             </td>
             <td translate="no">
-                <a href="https://github.com/santiyounger">@Santi Younger</a>
-            </td>
-            <td translate="no">
-            2021/10/14
+                <a href="https://github.com/santiyounger">@Santi Younger</a><br/>
+                <small>2021/10/14</small>
             </td>
         </tr>
         
         <tr>
-            <th translate="no">
-                8
+            <th translate="no" title="2021/10/13">
+                <small>8</small>
             </th>
-            <th translate="no">
+            <th translate="no" title="l3ony2k/D42ker-Logseq">
                 <img alt="GitHub Repo stars" src="https://img.shields.io/github/stars/l3ony2k/D42ker-Logseq?style=for-the-badge" loading="lazy"/><br/>
                 
                 <img alt="GitHub last commit" src="https://img.shields.io/github/last-commit/l3ony2k/D42ker-Logseq?style=for-the-badge" loading="lazy"/>
@@ -1484,18 +1407,16 @@
                 <input type="checkbox" onclick="toggleTaskConfirmation(this)" name="logseq-d42ker-theme"/>
             </td>
             <td translate="no">
-                <a href="https://github.com/l3ony2k">@LeonWong0609</a>
-            </td>
-            <td translate="no">
-            2021/10/13
+                <a href="https://github.com/l3ony2k">@LeonWong0609</a><br/>
+                <small>2021/10/13</small>
             </td>
         </tr>
         
         <tr>
-            <th translate="no">
-                7
+            <th translate="no" title="2021/9/26">
+                <small>7</small>
             </th>
-            <th translate="no">
+            <th translate="no" title="dale502/logseq-discord-like-dark-theme">
                 <img alt="GitHub Repo stars" src="https://img.shields.io/github/stars/dale502/logseq-discord-like-dark-theme?style=for-the-badge" loading="lazy"/><br/>
                 
                 <img alt="GitHub last commit" src="https://img.shields.io/github/last-commit/dale502/logseq-discord-like-dark-theme?style=for-the-badge" loading="lazy"/>
@@ -1517,18 +1438,16 @@
                 <input type="checkbox" onclick="toggleTaskConfirmation(this)" name="logseq-dicord-like-dark-theme"/>
             </td>
             <td translate="no">
-                <a href="https://github.com/dale502">@dale502</a>
-            </td>
-            <td translate="no">
-            2021/9/26
+                <a href="https://github.com/dale502">@dale502</a><br/>
+                <small>2021/9/26</small>
             </td>
         </tr>
         
         <tr>
-            <th translate="no">
-                6
+            <th translate="no" title="2021/9/26">
+                <small>6</small>
             </th>
-            <th translate="no">
+            <th translate="no" title="pengx17/logseq-laurel-theme">
                 <img alt="GitHub Repo stars" src="https://img.shields.io/github/stars/pengx17/logseq-laurel-theme?style=for-the-badge" loading="lazy"/><br/>
                 
                 <img alt="GitHub last commit" src="https://img.shields.io/github/last-commit/pengx17/logseq-laurel-theme?style=for-the-badge" loading="lazy"/>
@@ -1550,18 +1469,16 @@
                 <input type="checkbox" onclick="toggleTaskConfirmation(this)" name="logseq-laurel-theme"/>
             </td>
             <td translate="no">
-                <a href="https://github.com/pengx17">@pengx17</a>
-            </td>
-            <td translate="no">
-            2021/9/26
+                <a href="https://github.com/pengx17">@pengx17</a><br/>
+                <small>2021/9/26</small>
             </td>
         </tr>
         
         <tr>
-            <th translate="no">
-                5
+            <th translate="no" title="2021/9/23">
+                <small>5</small>
             </th>
-            <th translate="no">
+            <th translate="no" title="DiamondYuan/logseq-eink-theme">
                 <img alt="GitHub Repo stars" src="https://img.shields.io/github/stars/DiamondYuan/logseq-eink-theme?style=for-the-badge" loading="lazy"/><br/>
                 
                 <img alt="GitHub last commit" src="https://img.shields.io/github/last-commit/DiamondYuan/logseq-eink-theme?style=for-the-badge" loading="lazy"/>
@@ -1583,18 +1500,16 @@
                 <input type="checkbox" onclick="toggleTaskConfirmation(this)" name="logseq-eink-theme"/>
             </td>
             <td translate="no">
-                <a href="https://github.com/DiamondYuan">@DiamondYuan</a>
-            </td>
-            <td translate="no">
-            2021/9/23
+                <a href="https://github.com/DiamondYuan">@DiamondYuan</a><br/>
+                <small>2021/9/23</small>
             </td>
         </tr>
         
         <tr>
-            <th translate="no">
-                4
+            <th translate="no" title="2021/9/23">
+                <small>4</small>
             </th>
-            <th translate="no">
+            <th translate="no" title="dracula/logseq">
                 <img alt="GitHub Repo stars" src="https://img.shields.io/github/stars/dracula/logseq?style=for-the-badge" loading="lazy"/><br/>
                 
                 <img alt="GitHub last commit" src="https://img.shields.io/github/last-commit/dracula/logseq?style=for-the-badge" loading="lazy"/>
@@ -1616,18 +1531,16 @@
                 <input type="checkbox" onclick="toggleTaskConfirmation(this)" name="logseq-dracula-theme"/>
             </td>
             <td translate="no">
-                <a href="https://github.com/dracula">@slybouhafs</a>
-            </td>
-            <td translate="no">
-            2021/9/23
+                <a href="https://github.com/dracula">@slybouhafs</a><br/>
+                <small>2021/9/23</small>
             </td>
         </tr>
         
         <tr>
-            <th translate="no">
-                3
+            <th translate="no" title="2021/9/17">
+                <small>3</small>
             </th>
-            <th translate="no">
+            <th translate="no" title="haydenull/logseq-woz-theme">
                 <img alt="GitHub Repo stars" src="https://img.shields.io/github/stars/haydenull/logseq-woz-theme?style=for-the-badge" loading="lazy"/><br/>
                 
                 <img alt="GitHub last commit" src="https://img.shields.io/github/last-commit/haydenull/logseq-woz-theme?style=for-the-badge" loading="lazy"/>
@@ -1649,18 +1562,16 @@
                 <input type="checkbox" onclick="toggleTaskConfirmation(this)" name="logseq-woz-theme"/>
             </td>
             <td translate="no">
-                <a href="https://github.com/haydenull">@haydenull</a>
-            </td>
-            <td translate="no">
-            2021/9/17
+                <a href="https://github.com/haydenull">@haydenull</a><br/>
+                <small>2021/9/17</small>
             </td>
         </tr>
         
         <tr>
-            <th translate="no">
-                2
+            <th translate="no" title="2021/9/7">
+                <small>2</small>
             </th>
-            <th translate="no">
+            <th translate="no" title="sansui233/logseq-bonofix-theme">
                 <img alt="GitHub Repo stars" src="https://img.shields.io/github/stars/sansui233/logseq-bonofix-theme?style=for-the-badge" loading="lazy"/><br/>
                 
                 <img alt="GitHub last commit" src="https://img.shields.io/github/last-commit/sansui233/logseq-bonofix-theme?style=for-the-badge" loading="lazy"/>
@@ -1682,18 +1593,16 @@
                 <input type="checkbox" onclick="toggleTaskConfirmation(this)" name="logseq-bonofix-theme"/>
             </td>
             <td translate="no">
-                <a href="https://github.com/sansui233">@Sansui233</a>
-            </td>
-            <td translate="no">
-            2021/9/7
+                <a href="https://github.com/sansui233">@Sansui233</a><br/>
+                <small>2021/9/7</small>
             </td>
         </tr>
         
         <tr>
-            <th translate="no">
-                1
+            <th translate="no" title="2021/9/3">
+                <small>1</small>
             </th>
-            <th translate="no">
+            <th translate="no" title="pengx17/logseq-dev-theme">
                 <img alt="GitHub Repo stars" src="https://img.shields.io/github/stars/pengx17/logseq-dev-theme?style=for-the-badge" loading="lazy"/><br/>
                 
                 <img alt="GitHub last commit" src="https://img.shields.io/github/last-commit/pengx17/logseq-dev-theme?style=for-the-badge" loading="lazy"/>
@@ -1715,10 +1624,8 @@
                 <input type="checkbox" onclick="toggleTaskConfirmation(this)" name="logseq-dev-theme"/>
             </td>
             <td translate="no">
-                <a href="https://github.com/pengx17">@pengx17</a>
-            </td>
-            <td translate="no">
-            2021/9/3
+                <a href="https://github.com/pengx17">@pengx17</a><br/>
+                <small>2021/9/3</small>
             </td>
         </tr>
         </tbody>

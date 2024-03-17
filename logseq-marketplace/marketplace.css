@@ -1,3 +1,7 @@
+body.deleteLines table#target>tbody>tr:has(input[type="checkbox"]:checked) {
+    display: none;
+}
+
 table#target {
     border-collapse: collapse;
     width: 100%;
@@ -18,6 +22,10 @@ table#target {
         }
     }
 
+    &>thead>tr {
+        background-color: #f2f2f2;
+    }
+
     & th,
     & td {
         text-align: left;
@@ -25,7 +33,21 @@ table#target {
     }
 
     & th {
-        background-color: #f2f2f2;
+
+        &:nth-child(3) {
+            border-right: 0;
+            opacity: 0;
+        }
+
+        &:nth-child(4) {
+            border-left: 0;
+            border-right: 0;
+        }
+
+        &:nth-child(5) {
+            border-left: 0;
+            opacity: 0;
+        }
     }
 
     & td {
@@ -42,6 +64,19 @@ table#target {
         & input[type="checkbox"] {
             width: 30px;
             height: 30px;
+        }
+
+        &:nth-child(3) {
+            border-right: 0;
+        }
+
+        &:nth-child(4) {
+            border-left: 0;
+            border-right: 0;
+        }
+
+        &:nth-child(5) {
+            border-left: 0;
         }
     }
 }
