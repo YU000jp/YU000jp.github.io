@@ -1,0 +1,1728 @@
+
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>Logseq theme user records in table</title>
+        <meta charset="UTF-8"/>
+        <script src="https://code.jquery.com/jquery-3.7.1.slim.min.js" integrity="sha256-kmHvs0B+OpCW5GVHUNjv9rOmY0IvSIRcf7zGUDTDQM8=" crossorigin="anonymous"></script>
+        <script>
+            // Function to copy text to clipboard
+            function copyToClipboard(text) {
+            var dummy = document.createElement("textarea");
+            document.body.appendChild(dummy);
+            dummy.value = text;
+            dummy.select();
+            document.execCommand("copy");
+            document.body.removeChild(dummy);
+            }
+
+            // Function to toggle task confirmation
+            let processing = false;
+            function toggleTaskConfirmation(button) {
+                if (processing) {
+                    return;
+                }
+                processing = true;
+                button.disabled = true;
+                setTimeout(() => {
+                    processing = false;
+                    button.disabled = false;
+                }
+                , 1000);
+                const taskName = button.name.trim();
+                if (localStorage.getItem(taskName) === 'true') {
+                    localStorage.setItem(taskName, 'false');
+                    button.checked = false;
+                } else {
+                    localStorage.setItem(taskName, 'true');
+                    button.checked = true;
+                }
+            }
+            let processingTextarea = false;
+            function textareaMemo(input){
+                if (processingTextarea) {
+                    return;
+                }
+                processingTextarea = true;
+                input.disabled = true;
+                setTimeout(() => {
+                    processingTextarea = false;
+                    input.disabled = false;
+                }
+                , 1000);
+                localStorage.setItem("textarea-"+input.name, input.value);
+            }
+            // Load saved data from Web Storage
+            document.addEventListener('DOMContentLoaded', function() {
+                const buttons = document.querySelectorAll('input[type="checkbox"]');
+                buttons.forEach(function(button) {
+                    if (localStorage.getItem(button.name.trim()) === 'true') {
+                        button.checked = true;
+                    } else {
+                        button.checked = false;
+                    }
+                });
+                const textarea = document.querySelectorAll('textarea');
+                textarea.forEach(function(input) {
+                    input.value = localStorage.getItem("textarea-"+input.name);
+                });
+            });
+            $(document).ready(function(){
+                $("#target").DataTable({
+                    // "language":{
+                    //     url:"https://cdn.datatables.net/plug-ins/1.11.5/i18n/ja.json",
+                    // }
+                    stateSave: true,
+                    orderClasses: true,
+                    orderMulti: true,
+                    pageLength: 120,
+                    fixedHeader: true,
+                });
+            });
+        </script>
+        <link rel="stylesheet" href="https://cdn.datatables.net/1.11.5/css/jquery.dataTables.min.css">
+        <link rel="stylesheet" href="marketplace.css"/>
+        <script type="text/javascript" src="https://cdn.datatables.net/1.11.5/js/jquery.dataTables.min.js"></script>
+        <link rel="icon" href="https://blog.logseq.com/content/images/size/w256h256/2022/04/logseq-favicon.png" type="image/png">
+    </head>
+    <body>
+    
+    <h2>Logseq theme table (➕<a href="./plugin_table.html">Plugin</a>)</h2>
+    <p>This is a site for checking plugins from the browser. Can be sorted by title or newest(Click "Number"). Notes and checks by the user are saved in WebStorage (the device only). Copy the title using the copy button and input it on Logseq.</p>
+    <p>Last updated: 2024/3/11 0:26:29</p>
+
+    <table border="1" id="target">
+        <thead>
+            <tr><th>Number</th>
+            <th>Repo</th>
+            <th>Icon</th>
+            <th>Title</th>
+            <th>Copy</th>
+            <th>Description / User Notes</th>
+            <th>User Check</th>
+            <th>Author</th>
+            <th>Added Date</th></tr>
+        </thead>
+        <tbody>
+        
+        <tr>
+            <th translate="no">
+                49
+            </th>
+            <th translate="no">
+                <img alt="GitHub Repo stars" src="https://img.shields.io/github/stars/khoulihan/logseq-everforest-theme?style=for-the-badge" loading="lazy"/>
+                
+                <img alt="GitHub last commit" src="https://img.shields.io/github/last-commit/khoulihan/logseq-everforest-theme?style=for-the-badge" loading="lazy"/>
+            </th>
+            <td translate="no">
+                <img class="icon" src="./icon/logseq-everforest-theme/icon.svg" alt="icon" title="Everforest" loading="lazy"/>
+            </td>
+            <td translate="no">
+                <a href="https://github.com/khoulihan/logseq-everforest-theme" title="Everforest" class="title">Everforest</a><small>🔗</small><br/>
+            </td>
+            <td translate="no">
+                <button onclick="copyToClipboard('Everforest')" title="Everforest">📋</button>
+            </td>
+            <td>
+                Warm green, low-contrast theme.<br/>
+                <textarea translate="no" name="textarea-logseq-everforest-theme" onblur="textareaMemo(this)" rows="4" cols="80" placeholder="User Notes"></textarea>
+            </td>
+            <td translate="no">
+                <input type="checkbox" onclick="toggleTaskConfirmation(this)" name="logseq-everforest-theme"/>
+            </td>
+            <td translate="no">
+                <a href="https://github.com/khoulihan">@Kevin Houlihan</a>
+            </td>
+            <td translate="no">
+            2024/1/27
+            </td>
+        </tr>
+        
+        <tr>
+            <th translate="no">
+                48
+            </th>
+            <th translate="no">
+                <img alt="GitHub Repo stars" src="https://img.shields.io/github/stars/femto-code/logseq-one-theme?style=for-the-badge" loading="lazy"/>
+                
+                <img alt="GitHub last commit" src="https://img.shields.io/github/last-commit/femto-code/logseq-one-theme?style=for-the-badge" loading="lazy"/>
+            </th>
+            <td translate="no">
+                <img class="icon" src="./icon/logseq-one-theme/icon.png" alt="icon" title="One Theme" loading="lazy"/>
+            </td>
+            <td translate="no">
+                <a href="https://github.com/femto-code/logseq-one-theme" title="One Theme" class="title">One Theme</a><small>🔗</small><br/>
+            </td>
+            <td translate="no">
+                <button onclick="copyToClipboard('One Theme')" title="One Theme">📋</button>
+            </td>
+            <td>
+                A clean theme inspired by One Dark Pro.<br/>
+                <textarea translate="no" name="textarea-logseq-one-theme" onblur="textareaMemo(this)" rows="4" cols="80" placeholder="User Notes"></textarea>
+            </td>
+            <td translate="no">
+                <input type="checkbox" onclick="toggleTaskConfirmation(this)" name="logseq-one-theme"/>
+            </td>
+            <td translate="no">
+                <a href="https://github.com/femto-code">@femto-code</a>
+            </td>
+            <td translate="no">
+            2023/12/20
+            </td>
+        </tr>
+        
+        <tr>
+            <th translate="no">
+                47
+            </th>
+            <th translate="no">
+                <img alt="GitHub Repo stars" src="https://img.shields.io/github/stars/stan-voo/logseq-slavsko-theme?style=for-the-badge" loading="lazy"/>
+                
+                <img alt="GitHub last commit" src="https://img.shields.io/github/last-commit/stan-voo/logseq-slavsko-theme?style=for-the-badge" loading="lazy"/>
+            </th>
+            <td translate="no">
+                <img class="icon" src="./icon/logseq-slavsko-theme/./icon.png" alt="icon" title="Slavsko Theme" loading="lazy"/>
+            </td>
+            <td translate="no">
+                <a href="https://github.com/stan-voo/logseq-slavsko-theme" title="Slavsko Theme" class="title">Slavsko Theme</a><small>🔗</small><br/>
+            </td>
+            <td translate="no">
+                <button onclick="copyToClipboard('Slavsko Theme')" title="Slavsko Theme">📋</button>
+            </td>
+            <td>
+                Minimal light Logseq theme with bold typography and cyrillic font support.<br/>
+                <textarea translate="no" name="textarea-logseq-slavsko-theme" onblur="textareaMemo(this)" rows="4" cols="80" placeholder="User Notes"></textarea>
+            </td>
+            <td translate="no">
+                <input type="checkbox" onclick="toggleTaskConfirmation(this)" name="logseq-slavsko-theme"/>
+            </td>
+            <td translate="no">
+                <a href="https://github.com/stan-voo">@Stan Voo</a>
+            </td>
+            <td translate="no">
+            2023/11/18
+            </td>
+        </tr>
+        
+        <tr>
+            <th translate="no">
+                46
+            </th>
+            <th translate="no">
+                <img alt="GitHub Repo stars" src="https://img.shields.io/github/stars/tenset-security/logseq-tenset-theme?style=for-the-badge" loading="lazy"/>
+                
+                <img alt="GitHub last commit" src="https://img.shields.io/github/last-commit/tenset-security/logseq-tenset-theme?style=for-the-badge" loading="lazy"/>
+            </th>
+            <td translate="no">
+                <img class="icon" src="./icon/logseq-tenset-theme/icon.png" alt="icon" title="Tenset Security" loading="lazy"/>
+            </td>
+            <td translate="no">
+                <a href="https://github.com/tenset-security/logseq-tenset-theme" title="Tenset Security" class="title">Tenset Security</a><small>🔗</small><br/>
+            </td>
+            <td translate="no">
+                <button onclick="copyToClipboard('Tenset Security')" title="Tenset Security">📋</button>
+            </td>
+            <td>
+                Beautiful theme made for smart contract auditors<br/>
+                <textarea translate="no" name="textarea-logseq-tenset-theme" onblur="textareaMemo(this)" rows="4" cols="80" placeholder="User Notes"></textarea>
+            </td>
+            <td translate="no">
+                <input type="checkbox" onclick="toggleTaskConfirmation(this)" name="logseq-tenset-theme"/>
+            </td>
+            <td translate="no">
+                <a href="https://github.com/tenset-security">@Tenset</a>
+            </td>
+            <td translate="no">
+            2023/8/3
+            </td>
+        </tr>
+        
+        <tr>
+            <th translate="no">
+                45
+            </th>
+            <th translate="no">
+                <img alt="GitHub Repo stars" src="https://img.shields.io/github/stars/YU000jp/logseq-theme-classic-dark-theme-pack?style=for-the-badge" loading="lazy"/>
+                
+                <img alt="GitHub last commit" src="https://img.shields.io/github/last-commit/YU000jp/logseq-theme-classic-dark-theme-pack?style=for-the-badge" loading="lazy"/>
+            </th>
+            <td translate="no">
+                <img class="icon" src="./icon/logseq-theme-classic-dark-theme-pack/./icon.svg" alt="icon" title="Classic dark theme pack" loading="lazy"/>
+            </td>
+            <td translate="no">
+                <a href="https://github.com/YU000jp/logseq-theme-classic-dark-theme-pack" title="Classic dark theme pack" class="title">Classic dark theme pack</a><small>🔗</small><br/>
+            </td>
+            <td translate="no">
+                <button onclick="copyToClipboard('Classic dark theme pack')" title="Classic dark theme pack">📋</button>
+            </td>
+            <td>
+                This pack includes new color variations based on Logseq's original dark theme.<br/>
+                <textarea translate="no" name="textarea-logseq-theme-classic-dark-theme-pack" onblur="textareaMemo(this)" rows="4" cols="80" placeholder="User Notes"></textarea>
+            </td>
+            <td translate="no">
+                <input type="checkbox" onclick="toggleTaskConfirmation(this)" name="logseq-theme-classic-dark-theme-pack"/>
+            </td>
+            <td translate="no">
+                <a href="https://github.com/YU000jp">@YU000jp</a>
+            </td>
+            <td translate="no">
+            2023/7/27
+            </td>
+        </tr>
+        
+        <tr>
+            <th translate="no">
+                44
+            </th>
+            <th translate="no">
+                <img alt="GitHub Repo stars" src="https://img.shields.io/github/stars/Sh00Fly/logseq-bear-cub-theme?style=for-the-badge" loading="lazy"/>
+                
+                <img alt="GitHub last commit" src="https://img.shields.io/github/last-commit/Sh00Fly/logseq-bear-cub-theme?style=for-the-badge" loading="lazy"/>
+            </th>
+            <td translate="no">
+                <img class="icon" src="./icon/logseq-bear-cub-theme/icon.png" alt="icon" title="Bear Cub Theme for Logseq" loading="lazy"/>
+            </td>
+            <td translate="no">
+                <a href="https://github.com/Sh00Fly/logseq-bear-cub-theme" title="Bear Cub Theme for Logseq" class="title">Bear Cub Theme for Logseq</a><small>🔗</small><br/>
+            </td>
+            <td translate="no">
+                <button onclick="copyToClipboard('Bear Cub Theme for Logseq')" title="Bear Cub Theme for Logseq">📋</button>
+            </td>
+            <td>
+                The Bear Cub theme is minimalistic and functional.  This theme doesn't distract you with an explosion of color and graphical elements. Instead, it helps you stay focused. It creates a clear distinction between different structural and functional elements, which helps you see a bigger picture at a glance at any time.<br/>
+                <textarea translate="no" name="textarea-logseq-bear-cub-theme" onblur="textareaMemo(this)" rows="4" cols="80" placeholder="User Notes"></textarea>
+            </td>
+            <td translate="no">
+                <input type="checkbox" onclick="toggleTaskConfirmation(this)" name="logseq-bear-cub-theme"/>
+            </td>
+            <td translate="no">
+                <a href="https://github.com/Sh00Fly">@Sh00Fly</a>
+            </td>
+            <td translate="no">
+            2023/6/20
+            </td>
+        </tr>
+        
+        <tr>
+            <th translate="no">
+                43
+            </th>
+            <th translate="no">
+                <img alt="GitHub Repo stars" src="https://img.shields.io/github/stars/henices/logseq-flow-nord?style=for-the-badge" loading="lazy"/>
+                
+                <img alt="GitHub last commit" src="https://img.shields.io/github/last-commit/henices/logseq-flow-nord?style=for-the-badge" loading="lazy"/>
+            </th>
+            <td translate="no">
+                <img class="icon" src="./icon/logseq-flow-nord-theme/icon.png" alt="icon" title="Flow Nord theme" loading="lazy"/>
+            </td>
+            <td translate="no">
+                <a href="https://github.com/henices/logseq-flow-nord" title="Flow Nord theme" class="title">Flow Nord theme</a><small>🔗</small><br/>
+            </td>
+            <td translate="no">
+                <button onclick="copyToClipboard('Flow Nord theme')" title="Flow Nord theme">📋</button>
+            </td>
+            <td>
+                A minimalist theme that focuses on a clean and sleek interface with various color palette options.<br/>
+                <textarea translate="no" name="textarea-logseq-flow-nord-theme" onblur="textareaMemo(this)" rows="4" cols="80" placeholder="User Notes"></textarea>
+            </td>
+            <td translate="no">
+                <input type="checkbox" onclick="toggleTaskConfirmation(this)" name="logseq-flow-nord-theme"/>
+            </td>
+            <td translate="no">
+                <a href="https://github.com/henices">@nmartin84 and henices</a>
+            </td>
+            <td translate="no">
+            2023/5/25
+            </td>
+        </tr>
+        
+        <tr>
+            <th translate="no">
+                42
+            </th>
+            <th translate="no">
+                <img alt="GitHub Repo stars" src="https://img.shields.io/github/stars/Bad3r/Logseq-Nord-Theme?style=for-the-badge" loading="lazy"/>
+                
+                <img alt="GitHub last commit" src="https://img.shields.io/github/last-commit/Bad3r/Logseq-Nord-Theme?style=for-the-badge" loading="lazy"/>
+            </th>
+            <td translate="no">
+                <img class="icon" src="./icon/nord-theme/icon.svg" alt="icon" title="Nord theme" loading="lazy"/>
+            </td>
+            <td translate="no">
+                <a href="https://github.com/Bad3r/Logseq-Nord-Theme" title="Nord theme" class="title">Nord theme</a><small>🔗</small><br/>
+            </td>
+            <td translate="no">
+                <button onclick="copyToClipboard('Nord theme')" title="Nord theme">📋</button>
+            </td>
+            <td>
+                An arctic, north-bluish color palette 🧊<br/>
+                <textarea translate="no" name="textarea-nord-theme" onblur="textareaMemo(this)" rows="4" cols="80" placeholder="User Notes"></textarea>
+            </td>
+            <td translate="no">
+                <input type="checkbox" onclick="toggleTaskConfirmation(this)" name="nord-theme"/>
+            </td>
+            <td translate="no">
+                <a href="https://github.com/Bad3r">@Bad3r</a>
+            </td>
+            <td translate="no">
+            2023/5/21
+            </td>
+        </tr>
+        
+        <tr>
+            <th translate="no">
+                41
+            </th>
+            <th translate="no">
+                <img alt="GitHub Repo stars" src="https://img.shields.io/github/stars/candideu/logseq-eink-plus?style=for-the-badge" loading="lazy"/>
+                
+                <img alt="GitHub last commit" src="https://img.shields.io/github/last-commit/candideu/logseq-eink-plus?style=for-the-badge" loading="lazy"/>
+            </th>
+            <td translate="no">
+                <img class="icon" src="./icon/logseq-eink-plus/icon.png" alt="icon" title="High Contrast e-ink Theme" loading="lazy"/>
+            </td>
+            <td translate="no">
+                <a href="https://github.com/candideu/logseq-eink-plus" title="High Contrast e-ink Theme" class="title">High Contrast e-ink Theme</a><small>🔗</small><br/>
+            </td>
+            <td translate="no">
+                <button onclick="copyToClipboard('High Contrast e-ink Theme')" title="High Contrast e-ink Theme">📋</button>
+            </td>
+            <td>
+                A high-contrast, desaturated, and minimal Logseq theme which extends the eink theme with dark mode<br/>
+                <textarea translate="no" name="textarea-logseq-eink-plus" onblur="textareaMemo(this)" rows="4" cols="80" placeholder="User Notes"></textarea>
+            </td>
+            <td translate="no">
+                <input type="checkbox" onclick="toggleTaskConfirmation(this)" name="logseq-eink-plus"/>
+            </td>
+            <td translate="no">
+                <a href="https://github.com/candideu">@candide, DiamondYuan</a>
+            </td>
+            <td translate="no">
+            2023/4/29
+            </td>
+        </tr>
+        
+        <tr>
+            <th translate="no">
+                40
+            </th>
+            <th translate="no">
+                <img alt="GitHub Repo stars" src="https://img.shields.io/github/stars/natsustan/logseq-reflect-theme?style=for-the-badge" loading="lazy"/>
+                
+                <img alt="GitHub last commit" src="https://img.shields.io/github/last-commit/natsustan/logseq-reflect-theme?style=for-the-badge" loading="lazy"/>
+            </th>
+            <td translate="no">
+                <img class="icon" src="./icon/logseq-reflect-theme/logo.png" alt="icon" title="Reflect Theme" loading="lazy"/>
+            </td>
+            <td translate="no">
+                <a href="https://github.com/natsustan/logseq-reflect-theme" title="Reflect Theme" class="title">Reflect Theme</a><small>🔗</small><br/>
+            </td>
+            <td translate="no">
+                <button onclick="copyToClipboard('Reflect Theme')" title="Reflect Theme">📋</button>
+            </td>
+            <td>
+                A theme inspired by Reflect App<br/>
+                <textarea translate="no" name="textarea-logseq-reflect-theme" onblur="textareaMemo(this)" rows="4" cols="80" placeholder="User Notes"></textarea>
+            </td>
+            <td translate="no">
+                <input type="checkbox" onclick="toggleTaskConfirmation(this)" name="logseq-reflect-theme"/>
+            </td>
+            <td translate="no">
+                <a href="https://github.com/natsustan">@natsustan</a>
+            </td>
+            <td translate="no">
+            2023/3/15
+            </td>
+        </tr>
+        
+        <tr>
+            <th translate="no">
+                39
+            </th>
+            <th translate="no">
+                <img alt="GitHub Repo stars" src="https://img.shields.io/github/stars/tzcl/logseq-monokai?style=for-the-badge" loading="lazy"/>
+                
+                <img alt="GitHub last commit" src="https://img.shields.io/github/last-commit/tzcl/logseq-monokai?style=for-the-badge" loading="lazy"/>
+            </th>
+            <td translate="no">
+                <img class="icon" src="./icon/logseq-monokai/icon.svg" alt="icon" title="Monokai for Logseq" loading="lazy"/>
+            </td>
+            <td translate="no">
+                <a href="https://github.com/tzcl/logseq-monokai" title="Monokai for Logseq" class="title">Monokai for Logseq</a><small>🔗</small><br/>
+            </td>
+            <td translate="no">
+                <button onclick="copyToClipboard('Monokai for Logseq')" title="Monokai for Logseq">📋</button>
+            </td>
+            <td>
+                A dark theme for Logseq inspired by Monokai and Dracula.<br/>
+                <textarea translate="no" name="textarea-logseq-monokai" onblur="textareaMemo(this)" rows="4" cols="80" placeholder="User Notes"></textarea>
+            </td>
+            <td translate="no">
+                <input type="checkbox" onclick="toggleTaskConfirmation(this)" name="logseq-monokai"/>
+            </td>
+            <td translate="no">
+                <a href="https://github.com/tzcl">@Toby Law</a>
+            </td>
+            <td translate="no">
+            2023/2/11
+            </td>
+        </tr>
+        
+        <tr>
+            <th translate="no">
+                38
+            </th>
+            <th translate="no">
+                <img alt="GitHub Repo stars" src="https://img.shields.io/github/stars/jonesmelton/logseq-tufte-theme?style=for-the-badge" loading="lazy"/>
+                
+                <img alt="GitHub last commit" src="https://img.shields.io/github/last-commit/jonesmelton/logseq-tufte-theme?style=for-the-badge" loading="lazy"/>
+            </th>
+            <td translate="no">
+                <img class="icon" src="./icon/tufte-theme/./icon.png" alt="icon" title="Tufte Theme" loading="lazy"/>
+            </td>
+            <td translate="no">
+                <a href="https://github.com/jonesmelton/logseq-tufte-theme" title="Tufte Theme" class="title">Tufte Theme</a><small>🔗</small><br/>
+            </td>
+            <td translate="no">
+                <button onclick="copyToClipboard('Tufte Theme')" title="Tufte Theme">📋</button>
+            </td>
+            <td>
+                A port of Tufte-CSS based on the principles of Edward Tufte<br/>
+                <textarea translate="no" name="textarea-tufte-theme" onblur="textareaMemo(this)" rows="4" cols="80" placeholder="User Notes"></textarea>
+            </td>
+            <td translate="no">
+                <input type="checkbox" onclick="toggleTaskConfirmation(this)" name="tufte-theme"/>
+            </td>
+            <td translate="no">
+                <a href="https://github.com/jonesmelton">@jones melton</a>
+            </td>
+            <td translate="no">
+            2023/2/1
+            </td>
+        </tr>
+        
+        <tr>
+            <th translate="no">
+                37
+            </th>
+            <th translate="no">
+                <img alt="GitHub Repo stars" src="https://img.shields.io/github/stars/catppuccin/logseq?style=for-the-badge" loading="lazy"/>
+                
+                <img alt="GitHub last commit" src="https://img.shields.io/github/last-commit/catppuccin/logseq?style=for-the-badge" loading="lazy"/>
+            </th>
+            <td translate="no">
+                <img class="icon" src="./icon/logseq-catppuccin/icon.png" alt="icon" title="Catppuccin" loading="lazy"/>
+            </td>
+            <td translate="no">
+                <a href="https://github.com/catppuccin/logseq" title="Catppuccin" class="title">Catppuccin</a><small>🔗</small><br/>
+            </td>
+            <td translate="no">
+                <button onclick="copyToClipboard('Catppuccin')" title="Catppuccin">📋</button>
+            </td>
+            <td>
+                🦫 Soothing pastel theme for Logseq<br/>
+                <textarea translate="no" name="textarea-logseq-catppuccin" onblur="textareaMemo(this)" rows="4" cols="80" placeholder="User Notes"></textarea>
+            </td>
+            <td translate="no">
+                <input type="checkbox" onclick="toggleTaskConfirmation(this)" name="logseq-catppuccin"/>
+            </td>
+            <td translate="no">
+                <a href="https://github.com/catppuccin">@Soumik </a>
+            </td>
+            <td translate="no">
+            2023/1/30
+            </td>
+        </tr>
+        
+        <tr>
+            <th translate="no">
+                36
+            </th>
+            <th translate="no">
+                <img alt="GitHub Repo stars" src="https://img.shields.io/github/stars/UNICKCHENG/logseq-developer-theme?style=for-the-badge" loading="lazy"/>
+                
+                <img alt="GitHub last commit" src="https://img.shields.io/github/last-commit/UNICKCHENG/logseq-developer-theme?style=for-the-badge" loading="lazy"/>
+            </th>
+            <td translate="no">
+                
+            </td>
+            <td translate="no">
+                <a href="https://github.com/UNICKCHENG/logseq-developer-theme" title="Developer Theme" class="title">Developer Theme</a><small>🔗</small><br/>
+            </td>
+            <td translate="no">
+                <button onclick="copyToClipboard('Developer Theme')" title="Developer Theme">📋</button>
+            </td>
+            <td>
+                A more developer-friendly minimalist theme.<br/>
+                <textarea translate="no" name="textarea-logseq-developer-theme" onblur="textareaMemo(this)" rows="4" cols="80" placeholder="User Notes"></textarea>
+            </td>
+            <td translate="no">
+                <input type="checkbox" onclick="toggleTaskConfirmation(this)" name="logseq-developer-theme"/>
+            </td>
+            <td translate="no">
+                <a href="https://github.com/UNICKCHENG">@unickcheng</a>
+            </td>
+            <td translate="no">
+            2022/12/10
+            </td>
+        </tr>
+        
+        <tr>
+            <th translate="no">
+                35
+            </th>
+            <th translate="no">
+                <img alt="GitHub Repo stars" src="https://img.shields.io/github/stars/stdword/logseq-bujo-theme?style=for-the-badge" loading="lazy"/>
+                
+                <img alt="GitHub last commit" src="https://img.shields.io/github/last-commit/stdword/logseq-bujo-theme?style=for-the-badge" loading="lazy"/>
+            </th>
+            <td translate="no">
+                <img class="icon" src="./icon/logseq-bujo-theme/icon.png" alt="icon" title="Bullet Journal theme" loading="lazy"/>
+            </td>
+            <td translate="no">
+                <a href="https://github.com/stdword/logseq-bujo-theme" title="Bullet Journal theme" class="title">Bullet Journal theme</a><small>🔗</small><br/>
+            </td>
+            <td translate="no">
+                <button onclick="copyToClipboard('Bullet Journal theme')" title="Bullet Journal theme">📋</button>
+            </td>
+            <td>
+                Sepia, Coffee, White, Black: 4 themes inspired by Bullet Journals<br/>
+                <textarea translate="no" name="textarea-logseq-bujo-theme" onblur="textareaMemo(this)" rows="4" cols="80" placeholder="User Notes"></textarea>
+            </td>
+            <td translate="no">
+                <input type="checkbox" onclick="toggleTaskConfirmation(this)" name="logseq-bujo-theme"/>
+            </td>
+            <td translate="no">
+                <a href="https://github.com/stdword">@PiotrSss & stdword</a>
+            </td>
+            <td translate="no">
+            2022/11/12
+            </td>
+        </tr>
+        
+        <tr>
+            <th translate="no">
+                34
+            </th>
+            <th translate="no">
+                <img alt="GitHub Repo stars" src="https://img.shields.io/github/stars/andyburris/logseq-arc-theme?style=for-the-badge" loading="lazy"/>
+                
+                <img alt="GitHub last commit" src="https://img.shields.io/github/last-commit/andyburris/logseq-arc-theme?style=for-the-badge" loading="lazy"/>
+            </th>
+            <td translate="no">
+                <img class="icon" src="./icon/logseq-arc-theme/arc-icon.png" alt="icon" title="Arc Theme" loading="lazy"/>
+            </td>
+            <td translate="no">
+                <a href="https://github.com/andyburris/logseq-arc-theme" title="Arc Theme" class="title">Arc Theme</a><small>🔗</small><br/>
+            </td>
+            <td translate="no">
+                <button onclick="copyToClipboard('Arc Theme')" title="Arc Theme">📋</button>
+            </td>
+            <td>
+                 A Logseq theme based on Arc by The Browser Company<br/>
+                <textarea translate="no" name="textarea-logseq-arc-theme" onblur="textareaMemo(this)" rows="4" cols="80" placeholder="User Notes"></textarea>
+            </td>
+            <td translate="no">
+                <input type="checkbox" onclick="toggleTaskConfirmation(this)" name="logseq-arc-theme"/>
+            </td>
+            <td translate="no">
+                <a href="https://github.com/andyburris">@andyburris</a>
+            </td>
+            <td translate="no">
+            2022/9/29
+            </td>
+        </tr>
+        
+        <tr>
+            <th translate="no">
+                33
+            </th>
+            <th translate="no">
+                <img alt="GitHub Repo stars" src="https://img.shields.io/github/stars/Mat4m0/logseq-atmos-theme?style=for-the-badge" loading="lazy"/>
+                
+                <img alt="GitHub last commit" src="https://img.shields.io/github/last-commit/Mat4m0/logseq-atmos-theme?style=for-the-badge" loading="lazy"/>
+            </th>
+            <td translate="no">
+                <img class="icon" src="./icon/logseq-atmos-theme/icon.png" alt="icon" title="Atmos theme" loading="lazy"/>
+            </td>
+            <td translate="no">
+                <a href="https://github.com/Mat4m0/logseq-atmos-theme" title="Atmos theme" class="title">Atmos theme</a><small>🔗</small><br/>
+            </td>
+            <td translate="no">
+                <button onclick="copyToClipboard('Atmos theme')" title="Atmos theme">📋</button>
+            </td>
+            <td>
+                A theme inspired by One Dark Pro<br/>
+                <textarea translate="no" name="textarea-logseq-atmos-theme" onblur="textareaMemo(this)" rows="4" cols="80" placeholder="User Notes"></textarea>
+            </td>
+            <td translate="no">
+                <input type="checkbox" onclick="toggleTaskConfirmation(this)" name="logseq-atmos-theme"/>
+            </td>
+            <td translate="no">
+                <a href="https://github.com/Mat4m0">@Mat4m0</a>
+            </td>
+            <td translate="no">
+            2022/9/19
+            </td>
+        </tr>
+        
+        <tr>
+            <th translate="no">
+                32
+            </th>
+            <th translate="no">
+                <img alt="GitHub Repo stars" src="https://img.shields.io/github/stars/gavinmn/logseq-luma?style=for-the-badge" loading="lazy"/>
+                
+                <img alt="GitHub last commit" src="https://img.shields.io/github/last-commit/gavinmn/logseq-luma?style=for-the-badge" loading="lazy"/>
+            </th>
+            <td translate="no">
+                <img class="icon" src="./icon/logseq-luma/luma-icon.png" alt="icon" title="Luma" loading="lazy"/>
+            </td>
+            <td translate="no">
+                <a href="https://github.com/gavinmn/logseq-luma" title="Luma" class="title">Luma</a><small>🔗</small><br/>
+            </td>
+            <td translate="no">
+                <button onclick="copyToClipboard('Luma')" title="Luma">📋</button>
+            </td>
+            <td>
+                A minimal and detail oriented light and dark theme for Logseq<br/>
+                <textarea translate="no" name="textarea-logseq-luma" onblur="textareaMemo(this)" rows="4" cols="80" placeholder="User Notes"></textarea>
+            </td>
+            <td translate="no">
+                <input type="checkbox" onclick="toggleTaskConfirmation(this)" name="logseq-luma"/>
+            </td>
+            <td translate="no">
+                <a href="https://github.com/gavinmn">@gavmn</a>
+            </td>
+            <td translate="no">
+            2022/7/28
+            </td>
+        </tr>
+        
+        <tr>
+            <th translate="no">
+                31
+            </th>
+            <th translate="no">
+                <img alt="GitHub Repo stars" src="https://img.shields.io/github/stars/hisea/logseq-ozean-theme?style=for-the-badge" loading="lazy"/>
+                
+                <img alt="GitHub last commit" src="https://img.shields.io/github/last-commit/hisea/logseq-ozean-theme?style=for-the-badge" loading="lazy"/>
+            </th>
+            <td translate="no">
+                <img class="icon" src="./icon/logseq-ozean-theme/icon.png" alt="icon" title="Ozean theme" loading="lazy"/>
+            </td>
+            <td translate="no">
+                <a href="https://github.com/hisea/logseq-ozean-theme" title="Ozean theme" class="title">Ozean theme</a><small>🔗</small><br/>
+            </td>
+            <td translate="no">
+                <button onclick="copyToClipboard('Ozean theme')" title="Ozean theme">📋</button>
+            </td>
+            <td>
+                Ozean Theme, simple and colorful.<br/>
+                <textarea translate="no" name="textarea-logseq-ozean-theme" onblur="textareaMemo(this)" rows="4" cols="80" placeholder="User Notes"></textarea>
+            </td>
+            <td translate="no">
+                <input type="checkbox" onclick="toggleTaskConfirmation(this)" name="logseq-ozean-theme"/>
+            </td>
+            <td translate="no">
+                <a href="https://github.com/hisea">@hisea</a>
+            </td>
+            <td translate="no">
+            2022/5/29
+            </td>
+        </tr>
+        
+        <tr>
+            <th translate="no">
+                30
+            </th>
+            <th translate="no">
+                <img alt="GitHub Repo stars" src="https://img.shields.io/github/stars/mendax1234/logseq-cusgit-theme?style=for-the-badge" loading="lazy"/>
+                
+                <img alt="GitHub last commit" src="https://img.shields.io/github/last-commit/mendax1234/logseq-cusgit-theme?style=for-the-badge" loading="lazy"/>
+            </th>
+            <td translate="no">
+                <img class="icon" src="./icon/logseq-cusgit-theme/icon.png" alt="icon" title="Customized Github Theme" loading="lazy"/>
+            </td>
+            <td translate="no">
+                <a href="https://github.com/mendax1234/logseq-cusgit-theme" title="Customized Github Theme" class="title">Customized Github Theme</a><small>🔗</small><br/>
+            </td>
+            <td translate="no">
+                <button onclick="copyToClipboard('Customized Github Theme')" title="Customized Github Theme">📋</button>
+            </td>
+            <td>
+                A customized Github like theme<br/>
+                <textarea translate="no" name="textarea-logseq-cusgit-theme" onblur="textareaMemo(this)" rows="4" cols="80" placeholder="User Notes"></textarea>
+            </td>
+            <td translate="no">
+                <input type="checkbox" onclick="toggleTaskConfirmation(this)" name="logseq-cusgit-theme"/>
+            </td>
+            <td translate="no">
+                <a href="https://github.com/mendax1234">@Daniel Webber</a>
+            </td>
+            <td translate="no">
+            2022/5/26
+            </td>
+        </tr>
+        
+        <tr>
+            <th translate="no">
+                29
+            </th>
+            <th translate="no">
+                <img alt="GitHub Repo stars" src="https://img.shields.io/github/stars/denyskorolkov/logseq-immersion-theme?style=for-the-badge" loading="lazy"/>
+                
+                <img alt="GitHub last commit" src="https://img.shields.io/github/last-commit/denyskorolkov/logseq-immersion-theme?style=for-the-badge" loading="lazy"/>
+            </th>
+            <td translate="no">
+                <img class="icon" src="./icon/logseq-immersion-theme/icon.png" alt="icon" title="Immersion theme" loading="lazy"/>
+            </td>
+            <td translate="no">
+                <a href="https://github.com/denyskorolkov/logseq-immersion-theme" title="Immersion theme" class="title">Immersion theme</a><small>🔗</small><br/>
+            </td>
+            <td translate="no">
+                <button onclick="copyToClipboard('Immersion theme')" title="Immersion theme">📋</button>
+            </td>
+            <td>
+                A clean theme for immersion into Logseq<br/>
+                <textarea translate="no" name="textarea-logseq-immersion-theme" onblur="textareaMemo(this)" rows="4" cols="80" placeholder="User Notes"></textarea>
+            </td>
+            <td translate="no">
+                <input type="checkbox" onclick="toggleTaskConfirmation(this)" name="logseq-immersion-theme"/>
+            </td>
+            <td translate="no">
+                <a href="https://github.com/denyskorolkov">@Denys Korolkov</a>
+            </td>
+            <td translate="no">
+            2022/5/10
+            </td>
+        </tr>
+        
+        <tr>
+            <th translate="no">
+                28
+            </th>
+            <th translate="no">
+                <img alt="GitHub Repo stars" src="https://img.shields.io/github/stars/solariz/logseq-neon-theme?style=for-the-badge" loading="lazy"/>
+                
+                <img alt="GitHub last commit" src="https://img.shields.io/github/last-commit/solariz/logseq-neon-theme?style=for-the-badge" loading="lazy"/>
+            </th>
+            <td translate="no">
+                <img class="icon" src="./icon/logseq-neon-theme/logo.jpg" alt="icon" title="NEON theme" loading="lazy"/>
+            </td>
+            <td translate="no">
+                <a href="https://github.com/solariz/logseq-neon-theme" title="NEON theme" class="title">NEON theme</a><small>🔗</small><br/>
+            </td>
+            <td translate="no">
+                <button onclick="copyToClipboard('NEON theme')" title="NEON theme">📋</button>
+            </td>
+            <td>
+                v0.5 - Neon inspired Theme for logseq.<br/>
+                <textarea translate="no" name="textarea-logseq-neon-theme" onblur="textareaMemo(this)" rows="4" cols="80" placeholder="User Notes"></textarea>
+            </td>
+            <td translate="no">
+                <input type="checkbox" onclick="toggleTaskConfirmation(this)" name="logseq-neon-theme"/>
+            </td>
+            <td translate="no">
+                <a href="https://github.com/solariz">@solariz</a>
+            </td>
+            <td translate="no">
+            2022/4/21
+            </td>
+        </tr>
+        
+        <tr>
+            <th translate="no">
+                27
+            </th>
+            <th translate="no">
+                <img alt="GitHub Repo stars" src="https://img.shields.io/github/stars/dmytrodubinin/Harmony-theme-for-Logseq?style=for-the-badge" loading="lazy"/>
+                
+                <img alt="GitHub last commit" src="https://img.shields.io/github/last-commit/dmytrodubinin/Harmony-theme-for-Logseq?style=for-the-badge" loading="lazy"/>
+            </th>
+            <td translate="no">
+                <img class="icon" src="./icon/harmony-theme/./logo.png" alt="icon" title="Harmony Theme" loading="lazy"/>
+            </td>
+            <td translate="no">
+                <a href="https://github.com/dmytrodubinin/Harmony-theme-for-Logseq" title="Harmony Theme" class="title">Harmony Theme</a><small>🔗</small><br/>
+            </td>
+            <td translate="no">
+                <button onclick="copyToClipboard('Harmony Theme')" title="Harmony Theme">📋</button>
+            </td>
+            <td>
+                Minimalistic custom dark and white themes keeping the classic approach of the standard Logseq theme<br/>
+                <textarea translate="no" name="textarea-harmony-theme" onblur="textareaMemo(this)" rows="4" cols="80" placeholder="User Notes"></textarea>
+            </td>
+            <td translate="no">
+                <input type="checkbox" onclick="toggleTaskConfirmation(this)" name="harmony-theme"/>
+            </td>
+            <td translate="no">
+                <a href="https://github.com/dmytrodubinin">@Dmytro Dubinin</a>
+            </td>
+            <td translate="no">
+            2022/4/9
+            </td>
+        </tr>
+        
+        <tr>
+            <th translate="no">
+                26
+            </th>
+            <th translate="no">
+                <img alt="GitHub Repo stars" src="https://img.shields.io/github/stars/playerofgames/logseq-mia-theme?style=for-the-badge" loading="lazy"/>
+                
+                <img alt="GitHub last commit" src="https://img.shields.io/github/last-commit/playerofgames/logseq-mia-theme?style=for-the-badge" loading="lazy"/>
+            </th>
+            <td translate="no">
+                <img class="icon" src="./icon/logseq-mia-theme/icon.png" alt="icon" title="miA theme" loading="lazy"/>
+            </td>
+            <td translate="no">
+                <a href="https://github.com/playerofgames/logseq-mia-theme" title="miA theme" class="title">miA theme</a><small>🔗</small><br/>
+            </td>
+            <td translate="no">
+                <button onclick="copyToClipboard('miA theme')" title="miA theme">📋</button>
+            </td>
+            <td>
+                A theme inspired by macOS and iA Writer.<br/>
+                <textarea translate="no" name="textarea-logseq-mia-theme" onblur="textareaMemo(this)" rows="4" cols="80" placeholder="User Notes"></textarea>
+            </td>
+            <td translate="no">
+                <input type="checkbox" onclick="toggleTaskConfirmation(this)" name="logseq-mia-theme"/>
+            </td>
+            <td translate="no">
+                <a href="https://github.com/playerofgames">@playerofgames</a>
+            </td>
+            <td translate="no">
+            2022/3/21
+            </td>
+        </tr>
+        
+        <tr>
+            <th translate="no">
+                25
+            </th>
+            <th translate="no">
+                <img alt="GitHub Repo stars" src="https://img.shields.io/github/stars/g1eny0ung/logseq-github-theme?style=for-the-badge" loading="lazy"/>
+                
+                <img alt="GitHub last commit" src="https://img.shields.io/github/last-commit/g1eny0ung/logseq-github-theme?style=for-the-badge" loading="lazy"/>
+            </th>
+            <td translate="no">
+                <img class="icon" src="./icon/logseq-github-theme/icon.png" alt="icon" title="GitHub theme" loading="lazy"/>
+            </td>
+            <td translate="no">
+                <a href="https://github.com/g1eny0ung/logseq-github-theme" title="GitHub theme" class="title">GitHub theme</a><small>🔗</small><br/>
+            </td>
+            <td translate="no">
+                <button onclick="copyToClipboard('GitHub theme')" title="GitHub theme">📋</button>
+            </td>
+            <td>
+                😻 GitHub themes for Logseq.<br/>
+                <textarea translate="no" name="textarea-logseq-github-theme" onblur="textareaMemo(this)" rows="4" cols="80" placeholder="User Notes"></textarea>
+            </td>
+            <td translate="no">
+                <input type="checkbox" onclick="toggleTaskConfirmation(this)" name="logseq-github-theme"/>
+            </td>
+            <td translate="no">
+                <a href="https://github.com/g1eny0ung">@g1eny0ung</a>
+            </td>
+            <td translate="no">
+            2022/3/12
+            </td>
+        </tr>
+        
+        <tr>
+            <th translate="no">
+                24
+            </th>
+            <th translate="no">
+                <img alt="GitHub Repo stars" src="https://img.shields.io/github/stars/avoonix/logseq-pink-as-fox-theme?style=for-the-badge" loading="lazy"/>
+                
+                <img alt="GitHub last commit" src="https://img.shields.io/github/last-commit/avoonix/logseq-pink-as-fox-theme?style=for-the-badge" loading="lazy"/>
+            </th>
+            <td translate="no">
+                <img class="icon" src="./icon/logseq-pink-as-fox-theme/icon.svg" alt="icon" title="Pink as Fox Theme" loading="lazy"/>
+            </td>
+            <td translate="no">
+                <a href="https://github.com/avoonix/logseq-pink-as-fox-theme" title="Pink as Fox Theme" class="title">Pink as Fox Theme</a><small>🔗</small><br/>
+            </td>
+            <td translate="no">
+                <button onclick="copyToClipboard('Pink as Fox Theme')" title="Pink as Fox Theme">📋</button>
+            </td>
+            <td>
+                Black and pink theme for Logseq.<br/>
+                <textarea translate="no" name="textarea-logseq-pink-as-fox-theme" onblur="textareaMemo(this)" rows="4" cols="80" placeholder="User Notes"></textarea>
+            </td>
+            <td translate="no">
+                <input type="checkbox" onclick="toggleTaskConfirmation(this)" name="logseq-pink-as-fox-theme"/>
+            </td>
+            <td translate="no">
+                <a href="https://github.com/avoonix">@avoonix</a>
+            </td>
+            <td translate="no">
+            2022/2/17
+            </td>
+        </tr>
+        
+        <tr>
+            <th translate="no">
+                23
+            </th>
+            <th translate="no">
+                <img alt="GitHub Repo stars" src="https://img.shields.io/github/stars/rcvd/logseq-craft-theme?style=for-the-badge" loading="lazy"/>
+                
+                <img alt="GitHub last commit" src="https://img.shields.io/github/last-commit/rcvd/logseq-craft-theme?style=for-the-badge" loading="lazy"/>
+            </th>
+            <td translate="no">
+                <img class="icon" src="./icon/logseq-craft-theme/icon.png" alt="icon" title="Craft Theme" loading="lazy"/>
+            </td>
+            <td translate="no">
+                <a href="https://github.com/rcvd/logseq-craft-theme" title="Craft Theme" class="title">Craft Theme</a><small>🔗</small><br/>
+            </td>
+            <td translate="no">
+                <button onclick="copyToClipboard('Craft Theme')" title="Craft Theme">📋</button>
+            </td>
+            <td>
+                Almost all creativity requires purposeful play. A craft theme for Logseq<br/>
+                <textarea translate="no" name="textarea-logseq-craft-theme" onblur="textareaMemo(this)" rows="4" cols="80" placeholder="User Notes"></textarea>
+            </td>
+            <td translate="no">
+                <input type="checkbox" onclick="toggleTaskConfirmation(this)" name="logseq-craft-theme"/>
+            </td>
+            <td translate="no">
+                <a href="https://github.com/rcvd">@Alexander Rink</a>
+            </td>
+            <td translate="no">
+            2022/2/8
+            </td>
+        </tr>
+        
+        <tr>
+            <th translate="no">
+                22
+            </th>
+            <th translate="no">
+                <img alt="GitHub Repo stars" src="https://img.shields.io/github/stars/blueteafrog/logseq-gunmetal-theme?style=for-the-badge" loading="lazy"/>
+                
+                <img alt="GitHub last commit" src="https://img.shields.io/github/last-commit/blueteafrog/logseq-gunmetal-theme?style=for-the-badge" loading="lazy"/>
+            </th>
+            <td translate="no">
+                <img class="icon" src="./icon/logseq-gunmetal-theme/icon.png" alt="icon" title="Gunmetal Theme" loading="lazy"/>
+            </td>
+            <td translate="no">
+                <a href="https://github.com/blueteafrog/logseq-gunmetal-theme" title="Gunmetal Theme" class="title">Gunmetal Theme</a><small>🔗</small><br/>
+            </td>
+            <td translate="no">
+                <button onclick="copyToClipboard('Gunmetal Theme')" title="Gunmetal Theme">📋</button>
+            </td>
+            <td>
+                Gunmetal Theme was designed for long screen times and reading comfort. It features a dark theme and a light theme.<br/>
+                <textarea translate="no" name="textarea-logseq-gunmetal-theme" onblur="textareaMemo(this)" rows="4" cols="80" placeholder="User Notes"></textarea>
+            </td>
+            <td translate="no">
+                <input type="checkbox" onclick="toggleTaskConfirmation(this)" name="logseq-gunmetal-theme"/>
+            </td>
+            <td translate="no">
+                <a href="https://github.com/blueteafrog">@blueteafrog</a>
+            </td>
+            <td translate="no">
+            2022/1/17
+            </td>
+        </tr>
+        
+        <tr>
+            <th translate="no">
+                21
+            </th>
+            <th translate="no">
+                <img alt="GitHub Repo stars" src="https://img.shields.io/github/stars/blueteafrog/logseq-mocha-theme?style=for-the-badge" loading="lazy"/>
+                
+                <img alt="GitHub last commit" src="https://img.shields.io/github/last-commit/blueteafrog/logseq-mocha-theme?style=for-the-badge" loading="lazy"/>
+            </th>
+            <td translate="no">
+                <img class="icon" src="./icon/logseq-mocha-theme/icon.png" alt="icon" title="Mocha Theme" loading="lazy"/>
+            </td>
+            <td translate="no">
+                <a href="https://github.com/blueteafrog/logseq-mocha-theme" title="Mocha Theme" class="title">Mocha Theme</a><small>🔗</small><br/>
+            </td>
+            <td translate="no">
+                <button onclick="copyToClipboard('Mocha Theme')" title="Mocha Theme">📋</button>
+            </td>
+            <td>
+                Mocha theme features a light and dark mode with pronounced main content section<br/>
+                <textarea translate="no" name="textarea-logseq-mocha-theme" onblur="textareaMemo(this)" rows="4" cols="80" placeholder="User Notes"></textarea>
+            </td>
+            <td translate="no">
+                <input type="checkbox" onclick="toggleTaskConfirmation(this)" name="logseq-mocha-theme"/>
+            </td>
+            <td translate="no">
+                <a href="https://github.com/blueteafrog">@blueteafrog</a>
+            </td>
+            <td translate="no">
+            2022/1/2
+            </td>
+        </tr>
+        
+        <tr>
+            <th translate="no">
+                20
+            </th>
+            <th translate="no">
+                <img alt="GitHub Repo stars" src="https://img.shields.io/github/stars/joeykhuang/logseq-textbook-theme?style=for-the-badge" loading="lazy"/>
+                
+                <img alt="GitHub last commit" src="https://img.shields.io/github/last-commit/joeykhuang/logseq-textbook-theme?style=for-the-badge" loading="lazy"/>
+            </th>
+            <td translate="no">
+                <img class="icon" src="./icon/logseq-textbook-theme/icon.png" alt="icon" title="Textbook theme" loading="lazy"/>
+            </td>
+            <td translate="no">
+                <a href="https://github.com/joeykhuang/logseq-textbook-theme" title="Textbook theme" class="title">Textbook theme</a><small>🔗</small><br/>
+            </td>
+            <td translate="no">
+                <button onclick="copyToClipboard('Textbook theme')" title="Textbook theme">📋</button>
+            </td>
+            <td>
+                Textbook theme for Logseq<br/>
+                <textarea translate="no" name="textarea-logseq-textbook-theme" onblur="textareaMemo(this)" rows="4" cols="80" placeholder="User Notes"></textarea>
+            </td>
+            <td translate="no">
+                <input type="checkbox" onclick="toggleTaskConfirmation(this)" name="logseq-textbook-theme"/>
+            </td>
+            <td translate="no">
+                <a href="https://github.com/joeykhuang">@joeykhuang</a>
+            </td>
+            <td translate="no">
+            2021/12/31
+            </td>
+        </tr>
+        
+        <tr>
+            <th translate="no">
+                19
+            </th>
+            <th translate="no">
+                <img alt="GitHub Repo stars" src="https://img.shields.io/github/stars/blueteafrog/logseq-oxfordblue-theme?style=for-the-badge" loading="lazy"/>
+                
+                <img alt="GitHub last commit" src="https://img.shields.io/github/last-commit/blueteafrog/logseq-oxfordblue-theme?style=for-the-badge" loading="lazy"/>
+            </th>
+            <td translate="no">
+                <img class="icon" src="./icon/logseq-oxford-blue-theme/icon.png" alt="icon" title="Oxford Blue Theme" loading="lazy"/>
+            </td>
+            <td translate="no">
+                <a href="https://github.com/blueteafrog/logseq-oxfordblue-theme" title="Oxford Blue Theme" class="title">Oxford Blue Theme</a><small>🔗</small><br/>
+            </td>
+            <td translate="no">
+                <button onclick="copyToClipboard('Oxford Blue Theme')" title="Oxford Blue Theme">📋</button>
+            </td>
+            <td>
+                Oxford blue theme features both a low contrast dark mode and high contrast light mode<br/>
+                <textarea translate="no" name="textarea-logseq-oxford-blue-theme" onblur="textareaMemo(this)" rows="4" cols="80" placeholder="User Notes"></textarea>
+            </td>
+            <td translate="no">
+                <input type="checkbox" onclick="toggleTaskConfirmation(this)" name="logseq-oxford-blue-theme"/>
+            </td>
+            <td translate="no">
+                <a href="https://github.com/blueteafrog">@blueteafrog</a>
+            </td>
+            <td translate="no">
+            2021/12/27
+            </td>
+        </tr>
+        
+        <tr>
+            <th translate="no">
+                18
+            </th>
+            <th translate="no">
+                <img alt="GitHub Repo stars" src="https://img.shields.io/github/stars/rcvd/logseq-things-theme?style=for-the-badge" loading="lazy"/>
+                
+                <img alt="GitHub last commit" src="https://img.shields.io/github/last-commit/rcvd/logseq-things-theme?style=for-the-badge" loading="lazy"/>
+            </th>
+            <td translate="no">
+                <img class="icon" src="./icon/logseq-things-theme/icon.png" alt="icon" title="Things Theme" loading="lazy"/>
+            </td>
+            <td translate="no">
+                <a href="https://github.com/rcvd/logseq-things-theme" title="Things Theme" class="title">Things Theme</a><small>🔗</small><br/>
+            </td>
+            <td translate="no">
+                <button onclick="copyToClipboard('Things Theme')" title="Things Theme">📋</button>
+            </td>
+            <td>
+                The things you used to own, now they own you.<br/>
+                <textarea translate="no" name="textarea-logseq-things-theme" onblur="textareaMemo(this)" rows="4" cols="80" placeholder="User Notes"></textarea>
+            </td>
+            <td translate="no">
+                <input type="checkbox" onclick="toggleTaskConfirmation(this)" name="logseq-things-theme"/>
+            </td>
+            <td translate="no">
+                <a href="https://github.com/rcvd">@Alexander Rink</a>
+            </td>
+            <td translate="no">
+            2021/12/19
+            </td>
+        </tr>
+        
+        <tr>
+            <th translate="no">
+                17
+            </th>
+            <th translate="no">
+                <img alt="GitHub Repo stars" src="https://img.shields.io/github/stars/kirso/logseq-panic-theme?style=for-the-badge" loading="lazy"/>
+                
+                <img alt="GitHub last commit" src="https://img.shields.io/github/last-commit/kirso/logseq-panic-theme?style=for-the-badge" loading="lazy"/>
+            </th>
+            <td translate="no">
+                <img class="icon" src="./icon/logseq-panic-theme/icon.png" alt="icon" title="Panic theme" loading="lazy"/>
+            </td>
+            <td translate="no">
+                <a href="https://github.com/kirso/logseq-panic-theme" title="Panic theme" class="title">Panic theme</a><small>🔗</small><br/>
+            </td>
+            <td translate="no">
+                <button onclick="copyToClipboard('Panic theme')" title="Panic theme">📋</button>
+            </td>
+            <td>
+                A theme inspired by Panic mode template from Bear notes app <br/>
+                <textarea translate="no" name="textarea-logseq-panic-theme" onblur="textareaMemo(this)" rows="4" cols="80" placeholder="User Notes"></textarea>
+            </td>
+            <td translate="no">
+                <input type="checkbox" onclick="toggleTaskConfirmation(this)" name="logseq-panic-theme"/>
+            </td>
+            <td translate="no">
+                <a href="https://github.com/kirso">@kirso</a>
+            </td>
+            <td translate="no">
+            2021/12/18
+            </td>
+        </tr>
+        
+        <tr>
+            <th translate="no">
+                16
+            </th>
+            <th translate="no">
+                <img alt="GitHub Repo stars" src="https://img.shields.io/github/stars/rcvd/logseq-quattro-theme?style=for-the-badge" loading="lazy"/>
+                
+                <img alt="GitHub last commit" src="https://img.shields.io/github/last-commit/rcvd/logseq-quattro-theme?style=for-the-badge" loading="lazy"/>
+            </th>
+            <td translate="no">
+                <img class="icon" src="./icon/logseq-quattro-theme/icon.png" alt="icon" title="Quattro Theme" loading="lazy"/>
+            </td>
+            <td translate="no">
+                <a href="https://github.com/rcvd/logseq-quattro-theme" title="Quattro Theme" class="title">Quattro Theme</a><small>🔗</small><br/>
+            </td>
+            <td translate="no">
+                <button onclick="copyToClipboard('Quattro Theme')" title="Quattro Theme">📋</button>
+            </td>
+            <td>
+                Where your attention goes, your time goes. An iA Writer inspired theme for Logseq.<br/>
+                <textarea translate="no" name="textarea-logseq-quattro-theme" onblur="textareaMemo(this)" rows="4" cols="80" placeholder="User Notes"></textarea>
+            </td>
+            <td translate="no">
+                <input type="checkbox" onclick="toggleTaskConfirmation(this)" name="logseq-quattro-theme"/>
+            </td>
+            <td translate="no">
+                <a href="https://github.com/rcvd">@Alexander Rink</a>
+            </td>
+            <td translate="no">
+            2021/12/16
+            </td>
+        </tr>
+        
+        <tr>
+            <th translate="no">
+                15
+            </th>
+            <th translate="no">
+                <img alt="GitHub Repo stars" src="https://img.shields.io/github/stars/ttytm/logseq-allday-theme?style=for-the-badge" loading="lazy"/>
+                
+                <img alt="GitHub last commit" src="https://img.shields.io/github/last-commit/ttytm/logseq-allday-theme?style=for-the-badge" loading="lazy"/>
+            </th>
+            <td translate="no">
+                <img class="icon" src="./icon/logseq-allday-theme/icon.png" alt="icon" title="All Day Theme" loading="lazy"/>
+            </td>
+            <td translate="no">
+                <a href="https://github.com/ttytm/logseq-allday-theme" title="All Day Theme" class="title">All Day Theme</a><small>🔗</small><br/>
+            </td>
+            <td translate="no">
+                <button onclick="copyToClipboard('All Day Theme')" title="All Day Theme">📋</button>
+            </td>
+            <td>
+                A clean theme styled for high readability and minimal eye strain.<br/>
+                <textarea translate="no" name="textarea-logseq-allday-theme" onblur="textareaMemo(this)" rows="4" cols="80" placeholder="User Notes"></textarea>
+            </td>
+            <td translate="no">
+                <input type="checkbox" onclick="toggleTaskConfirmation(this)" name="logseq-allday-theme"/>
+            </td>
+            <td translate="no">
+                <a href="https://github.com/ttytm">@Turiiya</a>
+            </td>
+            <td translate="no">
+            2021/12/15
+            </td>
+        </tr>
+        
+        <tr>
+            <th translate="no">
+                14
+            </th>
+            <th translate="no">
+                <img alt="GitHub Repo stars" src="https://img.shields.io/github/stars/rcvd/logseq-bear-theme?style=for-the-badge" loading="lazy"/>
+                
+                <img alt="GitHub last commit" src="https://img.shields.io/github/last-commit/rcvd/logseq-bear-theme?style=for-the-badge" loading="lazy"/>
+            </th>
+            <td translate="no">
+                <img class="icon" src="./icon/logseq-bear-theme/icon.png" alt="icon" title="Bear Theme" loading="lazy"/>
+            </td>
+            <td translate="no">
+                <a href="https://github.com/rcvd/logseq-bear-theme" title="Bear Theme" class="title">Bear Theme</a><small>🔗</small><br/>
+            </td>
+            <td translate="no">
+                <button onclick="copyToClipboard('Bear Theme')" title="Bear Theme">📋</button>
+            </td>
+            <td>
+                You're braver than you believe, stronger than you seem and smarter than you think. A bear theme for Logseq<br/>
+                <textarea translate="no" name="textarea-logseq-bear-theme" onblur="textareaMemo(this)" rows="4" cols="80" placeholder="User Notes"></textarea>
+            </td>
+            <td translate="no">
+                <input type="checkbox" onclick="toggleTaskConfirmation(this)" name="logseq-bear-theme"/>
+            </td>
+            <td translate="no">
+                <a href="https://github.com/rcvd">@Alexander Rink</a>
+            </td>
+            <td translate="no">
+            2021/11/22
+            </td>
+        </tr>
+        
+        <tr>
+            <th translate="no">
+                13
+            </th>
+            <th translate="no">
+                <img alt="GitHub Repo stars" src="https://img.shields.io/github/stars/crendl/logseq-sepia-theme?style=for-the-badge" loading="lazy"/>
+                
+                <img alt="GitHub last commit" src="https://img.shields.io/github/last-commit/crendl/logseq-sepia-theme?style=for-the-badge" loading="lazy"/>
+            </th>
+            <td translate="no">
+                
+            </td>
+            <td translate="no">
+                <a href="https://github.com/crendl/logseq-sepia-theme" title="Sepia theme" class="title">Sepia theme</a><small>🔗</small><br/>
+            </td>
+            <td translate="no">
+                <button onclick="copyToClipboard('Sepia theme')" title="Sepia theme">📋</button>
+            </td>
+            <td>
+                A Sepia Logseq Theme<br/>
+                <textarea translate="no" name="textarea-logseq-sepia-theme" onblur="textareaMemo(this)" rows="4" cols="80" placeholder="User Notes"></textarea>
+            </td>
+            <td translate="no">
+                <input type="checkbox" onclick="toggleTaskConfirmation(this)" name="logseq-sepia-theme"/>
+            </td>
+            <td translate="no">
+                <a href="https://github.com/crendl">@mschmidtkorth/crendl</a>
+            </td>
+            <td translate="no">
+            2021/11/16
+            </td>
+        </tr>
+        
+        <tr>
+            <th translate="no">
+                12
+            </th>
+            <th translate="no">
+                <img alt="GitHub Repo stars" src="https://img.shields.io/github/stars/sethfair/logseq-atlas-theme?style=for-the-badge" loading="lazy"/>
+                
+                <img alt="GitHub last commit" src="https://img.shields.io/github/last-commit/sethfair/logseq-atlas-theme?style=for-the-badge" loading="lazy"/>
+            </th>
+            <td translate="no">
+                <img class="icon" src="./icon/logseq-atlas-theme/icon.png" alt="icon" title="Atlas Theme" loading="lazy"/>
+            </td>
+            <td translate="no">
+                <a href="https://github.com/sethfair/logseq-atlas-theme" title="Atlas Theme" class="title">Atlas Theme</a><small>🔗</small><br/>
+            </td>
+            <td translate="no">
+                <button onclick="copyToClipboard('Atlas Theme')" title="Atlas Theme">📋</button>
+            </td>
+            <td>
+                Atlas theme provides a pure and distraction-free experience with always a dark sidebar.<br/>
+                <textarea translate="no" name="textarea-logseq-atlas-theme" onblur="textareaMemo(this)" rows="4" cols="80" placeholder="User Notes"></textarea>
+            </td>
+            <td translate="no">
+                <input type="checkbox" onclick="toggleTaskConfirmation(this)" name="logseq-atlas-theme"/>
+            </td>
+            <td translate="no">
+                <a href="https://github.com/sethfair">@Seth Fair</a>
+            </td>
+            <td translate="no">
+            2021/11/3
+            </td>
+        </tr>
+        
+        <tr>
+            <th translate="no">
+                11
+            </th>
+            <th translate="no">
+                <img alt="GitHub Repo stars" src="https://img.shields.io/github/stars/wirtzdan/logseq-paper-theme?style=for-the-badge" loading="lazy"/>
+                
+                <img alt="GitHub last commit" src="https://img.shields.io/github/last-commit/wirtzdan/logseq-paper-theme?style=for-the-badge" loading="lazy"/>
+            </th>
+            <td translate="no">
+                <img class="icon" src="./icon/logseq-paper-theme/icon.png" alt="icon" title="Paper theme" loading="lazy"/>
+            </td>
+            <td translate="no">
+                <a href="https://github.com/wirtzdan/logseq-paper-theme" title="Paper theme" class="title">Paper theme</a><small>🔗</small><br/>
+            </td>
+            <td translate="no">
+                <button onclick="copyToClipboard('Paper theme')" title="Paper theme">📋</button>
+            </td>
+            <td>
+                A minimal Logseq theme<br/>
+                <textarea translate="no" name="textarea-logseq-paper-theme" onblur="textareaMemo(this)" rows="4" cols="80" placeholder="User Notes"></textarea>
+            </td>
+            <td translate="no">
+                <input type="checkbox" onclick="toggleTaskConfirmation(this)" name="logseq-paper-theme"/>
+            </td>
+            <td translate="no">
+                <a href="https://github.com/wirtzdan">@wirtzdan</a>
+            </td>
+            <td translate="no">
+            2021/10/24
+            </td>
+        </tr>
+        
+        <tr>
+            <th translate="no">
+                10
+            </th>
+            <th translate="no">
+                <img alt="GitHub Repo stars" src="https://img.shields.io/github/stars/Martin1887/CobraKaiFira?style=for-the-badge" loading="lazy"/>
+                
+                <img alt="GitHub last commit" src="https://img.shields.io/github/last-commit/Martin1887/CobraKaiFira?style=for-the-badge" loading="lazy"/>
+            </th>
+            <td translate="no">
+                <img class="icon" src="./icon/cobra-kai-fira-theme/icon.png" alt="icon" title="Cobra Kai Fira Theme" loading="lazy"/>
+            </td>
+            <td translate="no">
+                <a href="https://github.com/Martin1887/CobraKaiFira" title="Cobra Kai Fira Theme" class="title">Cobra Kai Fira Theme</a><small>🔗</small><br/>
+            </td>
+            <td translate="no">
+                <button onclick="copyToClipboard('Cobra Kai Fira Theme')" title="Cobra Kai Fira Theme">📋</button>
+            </td>
+            <td>
+                If Cobra Kai had a Logseq theme this would be it! (Made for fans of dark-mode).<br/>
+                <textarea translate="no" name="textarea-cobra-kai-fira-theme" onblur="textareaMemo(this)" rows="4" cols="80" placeholder="User Notes"></textarea>
+            </td>
+            <td translate="no">
+                <input type="checkbox" onclick="toggleTaskConfirmation(this)" name="cobra-kai-fira-theme"/>
+            </td>
+            <td translate="no">
+                <a href="https://github.com/Martin1887">@Santi Younger </a>
+            </td>
+            <td translate="no">
+            2021/10/14
+            </td>
+        </tr>
+        
+        <tr>
+            <th translate="no">
+                9
+            </th>
+            <th translate="no">
+                <img alt="GitHub Repo stars" src="https://img.shields.io/github/stars/santiyounger/Cobra?style=for-the-badge" loading="lazy"/>
+                
+                <img alt="GitHub last commit" src="https://img.shields.io/github/last-commit/santiyounger/Cobra?style=for-the-badge" loading="lazy"/>
+            </th>
+            <td translate="no">
+                <img class="icon" src="./icon/cobra-theme/icon.png" alt="icon" title="Cobra Theme" loading="lazy"/>
+            </td>
+            <td translate="no">
+                <a href="https://github.com/santiyounger/Cobra" title="Cobra Theme" class="title">Cobra Theme</a><small>🔗</small><br/>
+            </td>
+            <td translate="no">
+                <button onclick="copyToClipboard('Cobra Theme')" title="Cobra Theme">📋</button>
+            </td>
+            <td>
+                If Cobra Kai had a Logseq theme this would be it! (Made for fans of dark-mode).<br/>
+                <textarea translate="no" name="textarea-cobra-theme" onblur="textareaMemo(this)" rows="4" cols="80" placeholder="User Notes"></textarea>
+            </td>
+            <td translate="no">
+                <input type="checkbox" onclick="toggleTaskConfirmation(this)" name="cobra-theme"/>
+            </td>
+            <td translate="no">
+                <a href="https://github.com/santiyounger">@Santi Younger</a>
+            </td>
+            <td translate="no">
+            2021/10/14
+            </td>
+        </tr>
+        
+        <tr>
+            <th translate="no">
+                8
+            </th>
+            <th translate="no">
+                <img alt="GitHub Repo stars" src="https://img.shields.io/github/stars/l3ony2k/D42ker-Logseq?style=for-the-badge" loading="lazy"/>
+                
+                <img alt="GitHub last commit" src="https://img.shields.io/github/last-commit/l3ony2k/D42ker-Logseq?style=for-the-badge" loading="lazy"/>
+            </th>
+            <td translate="no">
+                <img class="icon" src="./icon/logseq-d42ker-theme/icon.png" alt="icon" title="D42ker Logseq" loading="lazy"/>
+            </td>
+            <td translate="no">
+                <a href="https://github.com/l3ony2k/D42ker-Logseq" title="D42ker Logseq" class="title">D42ker Logseq</a><small>🔗</small><br/>
+            </td>
+            <td translate="no">
+                <button onclick="copyToClipboard('D42ker Logseq')" title="D42ker Logseq">📋</button>
+            </td>
+            <td>
+                A darker Logseq theme.<br/>
+                <textarea translate="no" name="textarea-logseq-d42ker-theme" onblur="textareaMemo(this)" rows="4" cols="80" placeholder="User Notes"></textarea>
+            </td>
+            <td translate="no">
+                <input type="checkbox" onclick="toggleTaskConfirmation(this)" name="logseq-d42ker-theme"/>
+            </td>
+            <td translate="no">
+                <a href="https://github.com/l3ony2k">@LeonWong0609</a>
+            </td>
+            <td translate="no">
+            2021/10/13
+            </td>
+        </tr>
+        
+        <tr>
+            <th translate="no">
+                7
+            </th>
+            <th translate="no">
+                <img alt="GitHub Repo stars" src="https://img.shields.io/github/stars/dale502/logseq-discord-like-dark-theme?style=for-the-badge" loading="lazy"/>
+                
+                <img alt="GitHub last commit" src="https://img.shields.io/github/last-commit/dale502/logseq-discord-like-dark-theme?style=for-the-badge" loading="lazy"/>
+            </th>
+            <td translate="no">
+                
+            </td>
+            <td translate="no">
+                <a href="https://github.com/dale502/logseq-discord-like-dark-theme" title="Discord Like Dark Theme" class="title">Discord Like Dark Theme</a><small>🔗</small><br/>
+            </td>
+            <td translate="no">
+                <button onclick="copyToClipboard('Discord Like Dark Theme')" title="Discord Like Dark Theme">📋</button>
+            </td>
+            <td>
+                Discord Like Dark Theme<br/>
+                <textarea translate="no" name="textarea-logseq-dicord-like-dark-theme" onblur="textareaMemo(this)" rows="4" cols="80" placeholder="User Notes"></textarea>
+            </td>
+            <td translate="no">
+                <input type="checkbox" onclick="toggleTaskConfirmation(this)" name="logseq-dicord-like-dark-theme"/>
+            </td>
+            <td translate="no">
+                <a href="https://github.com/dale502">@dale502</a>
+            </td>
+            <td translate="no">
+            2021/9/26
+            </td>
+        </tr>
+        
+        <tr>
+            <th translate="no">
+                6
+            </th>
+            <th translate="no">
+                <img alt="GitHub Repo stars" src="https://img.shields.io/github/stars/pengx17/logseq-laurel-theme?style=for-the-badge" loading="lazy"/>
+                
+                <img alt="GitHub last commit" src="https://img.shields.io/github/last-commit/pengx17/logseq-laurel-theme?style=for-the-badge" loading="lazy"/>
+            </th>
+            <td translate="no">
+                <img class="icon" src="./icon/logseq-laurel-theme/laurel.png" alt="icon" title="Laurel theme" loading="lazy"/>
+            </td>
+            <td translate="no">
+                <a href="https://github.com/pengx17/logseq-laurel-theme" title="Laurel theme" class="title">Laurel theme</a><small>🔗</small><br/>
+            </td>
+            <td translate="no">
+                <button onclick="copyToClipboard('Laurel theme')" title="Laurel theme">📋</button>
+            </td>
+            <td>
+                A custom theme forked from logseq-clean-themes<br/>
+                <textarea translate="no" name="textarea-logseq-laurel-theme" onblur="textareaMemo(this)" rows="4" cols="80" placeholder="User Notes"></textarea>
+            </td>
+            <td translate="no">
+                <input type="checkbox" onclick="toggleTaskConfirmation(this)" name="logseq-laurel-theme"/>
+            </td>
+            <td translate="no">
+                <a href="https://github.com/pengx17">@pengx17</a>
+            </td>
+            <td translate="no">
+            2021/9/26
+            </td>
+        </tr>
+        
+        <tr>
+            <th translate="no">
+                5
+            </th>
+            <th translate="no">
+                <img alt="GitHub Repo stars" src="https://img.shields.io/github/stars/DiamondYuan/logseq-eink-theme?style=for-the-badge" loading="lazy"/>
+                
+                <img alt="GitHub last commit" src="https://img.shields.io/github/last-commit/DiamondYuan/logseq-eink-theme?style=for-the-badge" loading="lazy"/>
+            </th>
+            <td translate="no">
+                
+            </td>
+            <td translate="no">
+                <a href="https://github.com/DiamondYuan/logseq-eink-theme" title="E-ink Theme" class="title">E-ink Theme</a><small>🔗</small><br/>
+            </td>
+            <td translate="no">
+                <button onclick="copyToClipboard('E-ink Theme')" title="E-ink Theme">📋</button>
+            </td>
+            <td>
+                A pure E-ink theme for black-and-white monitors.<br/>
+                <textarea translate="no" name="textarea-logseq-eink-theme" onblur="textareaMemo(this)" rows="4" cols="80" placeholder="User Notes"></textarea>
+            </td>
+            <td translate="no">
+                <input type="checkbox" onclick="toggleTaskConfirmation(this)" name="logseq-eink-theme"/>
+            </td>
+            <td translate="no">
+                <a href="https://github.com/DiamondYuan">@DiamondYuan</a>
+            </td>
+            <td translate="no">
+            2021/9/23
+            </td>
+        </tr>
+        
+        <tr>
+            <th translate="no">
+                4
+            </th>
+            <th translate="no">
+                <img alt="GitHub Repo stars" src="https://img.shields.io/github/stars/dracula/logseq?style=for-the-badge" loading="lazy"/>
+                
+                <img alt="GitHub last commit" src="https://img.shields.io/github/last-commit/dracula/logseq?style=for-the-badge" loading="lazy"/>
+            </th>
+            <td translate="no">
+                <img class="icon" src="./icon/logseq-dracula-theme/icon.svg" alt="icon" title="Dracula theme" loading="lazy"/>
+            </td>
+            <td translate="no">
+                <a href="https://github.com/dracula/logseq" title="Dracula theme" class="title">Dracula theme</a><small>🔗</small><br/>
+            </td>
+            <td translate="no">
+                <button onclick="copyToClipboard('Dracula theme')" title="Dracula theme">📋</button>
+            </td>
+            <td>
+                🧛 Dark theme for Logseq.<br/>
+                <textarea translate="no" name="textarea-logseq-dracula-theme" onblur="textareaMemo(this)" rows="4" cols="80" placeholder="User Notes"></textarea>
+            </td>
+            <td translate="no">
+                <input type="checkbox" onclick="toggleTaskConfirmation(this)" name="logseq-dracula-theme"/>
+            </td>
+            <td translate="no">
+                <a href="https://github.com/dracula">@slybouhafs</a>
+            </td>
+            <td translate="no">
+            2021/9/23
+            </td>
+        </tr>
+        
+        <tr>
+            <th translate="no">
+                3
+            </th>
+            <th translate="no">
+                <img alt="GitHub Repo stars" src="https://img.shields.io/github/stars/haydenull/logseq-woz-theme?style=for-the-badge" loading="lazy"/>
+                
+                <img alt="GitHub last commit" src="https://img.shields.io/github/last-commit/haydenull/logseq-woz-theme?style=for-the-badge" loading="lazy"/>
+            </th>
+            <td translate="no">
+                <img class="icon" src="./icon/logseq-woz-theme/icon.png" alt="icon" title="Woz theme" loading="lazy"/>
+            </td>
+            <td translate="no">
+                <a href="https://github.com/haydenull/logseq-woz-theme" title="Woz theme" class="title">Woz theme</a><small>🔗</small><br/>
+            </td>
+            <td translate="no">
+                <button onclick="copyToClipboard('Woz theme')" title="Woz theme">📋</button>
+            </td>
+            <td>
+                A theme base logseq-dev-theme.<br/>
+                <textarea translate="no" name="textarea-logseq-woz-theme" onblur="textareaMemo(this)" rows="4" cols="80" placeholder="User Notes"></textarea>
+            </td>
+            <td translate="no">
+                <input type="checkbox" onclick="toggleTaskConfirmation(this)" name="logseq-woz-theme"/>
+            </td>
+            <td translate="no">
+                <a href="https://github.com/haydenull">@haydenull</a>
+            </td>
+            <td translate="no">
+            2021/9/17
+            </td>
+        </tr>
+        
+        <tr>
+            <th translate="no">
+                2
+            </th>
+            <th translate="no">
+                <img alt="GitHub Repo stars" src="https://img.shields.io/github/stars/sansui233/logseq-bonofix-theme?style=for-the-badge" loading="lazy"/>
+                
+                <img alt="GitHub last commit" src="https://img.shields.io/github/last-commit/sansui233/logseq-bonofix-theme?style=for-the-badge" loading="lazy"/>
+            </th>
+            <td translate="no">
+                <img class="icon" src="./icon/logseq-bonofix-theme/icon.png" alt="icon" title="Bonofix theme" loading="lazy"/>
+            </td>
+            <td translate="no">
+                <a href="https://github.com/sansui233/logseq-bonofix-theme" title="Bonofix theme" class="title">Bonofix theme</a><small>🔗</small><br/>
+            </td>
+            <td translate="no">
+                <button onclick="copyToClipboard('Bonofix theme')" title="Bonofix theme">📋</button>
+            </td>
+            <td>
+                A clean theme focus on bujo and long time focusing experience<br/>
+                <textarea translate="no" name="textarea-logseq-bonofix-theme" onblur="textareaMemo(this)" rows="4" cols="80" placeholder="User Notes"></textarea>
+            </td>
+            <td translate="no">
+                <input type="checkbox" onclick="toggleTaskConfirmation(this)" name="logseq-bonofix-theme"/>
+            </td>
+            <td translate="no">
+                <a href="https://github.com/sansui233">@Sansui233</a>
+            </td>
+            <td translate="no">
+            2021/9/7
+            </td>
+        </tr>
+        
+        <tr>
+            <th translate="no">
+                1
+            </th>
+            <th translate="no">
+                <img alt="GitHub Repo stars" src="https://img.shields.io/github/stars/pengx17/logseq-dev-theme?style=for-the-badge" loading="lazy"/>
+                
+                <img alt="GitHub last commit" src="https://img.shields.io/github/last-commit/pengx17/logseq-dev-theme?style=for-the-badge" loading="lazy"/>
+            </th>
+            <td translate="no">
+                <img class="icon" src="./icon/logseq-dev-theme/icon.png" alt="icon" title="Dev theme" loading="lazy"/>
+            </td>
+            <td translate="no">
+                <a href="https://github.com/pengx17/logseq-dev-theme" title="Dev theme" class="title">Dev theme</a><small>🔗</small><br/>
+            </td>
+            <td translate="no">
+                <button onclick="copyToClipboard('Dev theme')" title="Dev theme">📋</button>
+            </td>
+            <td>
+                A theme inspired by Dev.to & Figma.<br/>
+                <textarea translate="no" name="textarea-logseq-dev-theme" onblur="textareaMemo(this)" rows="4" cols="80" placeholder="User Notes"></textarea>
+            </td>
+            <td translate="no">
+                <input type="checkbox" onclick="toggleTaskConfirmation(this)" name="logseq-dev-theme"/>
+            </td>
+            <td translate="no">
+                <a href="https://github.com/pengx17">@pengx17</a>
+            </td>
+            <td translate="no">
+            2021/9/3
+            </td>
+        </tr>
+        </tbody>
+</table>
+
+    </body>
+</html>
