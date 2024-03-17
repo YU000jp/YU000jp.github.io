@@ -55,7 +55,7 @@ async function createTablesByTheme() {
 
 
     //pluginData.datetimeをtxtファイルから読み込む
-    fs.readFile('lastUpdate.txt', 'utf8', (err, data) => {
+    fs.readFile('logseq-marketplace/lastUpdate.txt', 'utf8', (err, data) => { //github Actionsで実行する場合は、logseq-marketplace/lastUpdate.txtにする
         if (err) {
             console.error(`Error reading lastUpdate.txt:`, err);
             return;
@@ -66,7 +66,7 @@ async function createTablesByTheme() {
             console.log(`Not need update. exit.`);
         } else {
             // pluginData.datetimeをtxtファイルに書き込む
-            fs.writeFile('lastUpdate.txt', pluginsData.datetime.toString(), (err) => {
+            fs.writeFile('logseq-marketplace/lastUpdate.txt', pluginsData.datetime.toString(), (err) => { //github Actionsで実行する場合は、logseq-marketplace/lastUpdate.txtにする
                 if (err) {
                     console.error(`Error writing lastUpdate.txt:`, err);
                     return;
