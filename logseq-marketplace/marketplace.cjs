@@ -3,7 +3,7 @@ const axios = require('axios');
 
 async function fetchPluginsData() {
     try {
-        const response = await axios.get('https://raw.githubusercontent.com/YU000jp/fork-logseq-marketplace/main/plugins.json');
+        const response = await axios.get('https://raw.githubusercontent.com/logseq/marketplace/master/plugins.json');
         return response.data;
     } catch (error) {
         console.error('Error fetching plugins data:', error);
@@ -108,8 +108,8 @@ function createTable(packages, theme,lastUpdate) {
                 ${number}
             </th>
             <th translate="no">
-                <img alt="GitHub Repo stars" src="https://img.shields.io/github/stars/${repo}?style=for-the-badge" loading="lazy"/>
-                ${theme === 'theme' ? "" : `<img alt="GitHub Downloads (all assets, all releases)" src="https://img.shields.io/github/downloads/${repo}/total?style=for-the-badge" loading="lazy" />`}
+                <img alt="GitHub Repo stars" src="https://img.shields.io/github/stars/${repo}?style=for-the-badge" loading="lazy"/><br/>
+                ${theme === 'theme' ? "" : `<img alt="GitHub Downloads (all assets, all releases)" src="https://img.shields.io/github/downloads/${repo}/total?style=for-the-badge" loading="lazy" /><br/>`}
                 <img alt="GitHub last commit" src="https://img.shields.io/github/last-commit/${repo}?style=for-the-badge" loading="lazy"/>
             </th>
             <td translate="no">
