@@ -250,7 +250,11 @@ function writeHTMLFile(htmlContent, filename, theme) {
         <link rel="stylesheet" href="https://cdn.datatables.net/1.11.5/css/jquery.dataTables.min.css">
         <link rel="stylesheet" href="marketplace.css"/>
         <script type="text/javascript" src="https://cdn.datatables.net/1.11.5/js/jquery.dataTables.min.js"></script>
-        <link rel="icon" href="https://blog.logseq.com/content/images/size/w256h256/2022/04/logseq-favicon.png" type="image/png">
+        <link rel="icon" href="https://blog.logseq.com/content/images/size/w256h256/2022/04/logseq-favicon.png" type="image/png"/>
+        <script src="https://cdn.jsdelivr.net/npm/darkmode-js@1.5.7/lib/darkmode-js.min.js"></script>
+        <script>
+            new Darkmode().showWidget();
+        </script>
     </head>
     <body>
     ${htmlContent}
