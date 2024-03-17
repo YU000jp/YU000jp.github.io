@@ -97,7 +97,7 @@ function createTable(packages, theme, lastUpdate) {
     // Create table header
     let tableContent = `
     <h2>Logseq ${theme} table (➕${theme === "theme" ? '<a href="./plugin_table.html">Plugin</a>' : '<a href="./theme_table.html">Theme</a>'})</h2>
-    <p>This is a site for checking plugins from the browser. Can be sorted by title or newest(Click "#"). Notes and checks by the user are saved in WebStorage (the device only). Copy the title using the copy button and input it on Logseq.</p>
+    <p>This is a site for searching plugins from the browser. Can be sorted by title or newest(Click "#"). Notes and checks by the user are saved in WebStorage (the device only). Copy the title using the copy button and input it on Logseq.</p>
     <p>Last updated: ${lastUpdate} / Delete checked lines<input type="checkbox" onclick="deleteLines(this)"/></p>
 
     <table border="1" id="target">
