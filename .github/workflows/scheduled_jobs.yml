@@ -3,7 +3,6 @@ name: Scheduled Jobs
 on:
     schedule:
         - cron: "0 0 * * 2,5" # 毎週火曜日と金曜日の0:00に実行
-env:
     # Allows you to run this workflow manually from the Actions tab
     workflow_dispatch:
 jobs:
