@@ -22,4 +22,4 @@ jobs:
               run: npm install fs axios
 
             - name: Run script
-              run: node ../../logseq-marketplace/marketplace.cjs
+              run: node logseq-marketplace/marketplace.cjs
