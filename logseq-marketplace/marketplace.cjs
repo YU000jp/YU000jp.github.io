@@ -1,6 +1,9 @@
 const fs = require('fs');
 const axios = require('axios');
 
+const path = 'logseq-marketplace/lastUpdate.txt'; //github Actionsで実行する場合は、logseq-marketplace/lastUpdate.txtにする
+//const path = 'lastUpdate.txt'; //ローカルで実行する場合は、lastUpdate.txtにする
+
 async function fetchPluginsData() {
     try {
         const response = await axios.get('https://raw.githubusercontent.com/logseq/marketplace/master/plugins.json');
@@ -16,9 +19,12 @@ async function downloadIcon(iconURL, id, icon) {
     if (!fs.existsSync(iconPath)) {
         try {
             const response = await axios.get(iconURL, { responseType: 'arraybuffer' });
+            console.log(`Downloading icon for package ID ${id}...`);
+            console.log(`Icon URL: ${iconURL}`);
             fs.mkdirSync(`./icon/${id}`, { recursive: true });
             fs.writeFileSync(iconPath, Buffer.from(response.data));
         } catch (error) {
+            console.error({ iconPath })
             console.error(`Error downloading icon for package ID ${id}:`, error);
         }
     }
@@ -29,7 +35,7 @@ function downloadIcons(packages) {
         for (const pkg of packages) {
             const { icon, id } = pkg;
             if (icon) {
-                const iconURL = `https://github.com/logseq/marketplace/raw/main/packages/${id}/${icon}`;
+                const iconURL = `https://github.com/logseq/marketplace/raw/master/packages/${id}/${icon}`;
                 downloadIcon(iconURL, id, icon);
             }
         }
@@ -51,12 +57,6 @@ async function createTablesByTheme() {
     // Separate packages based on theme property
     const themeYesPackages = sortedPackages.filter(pkg => pkg.theme);
     const themeNoPackages = sortedPackages.filter(pkg => !pkg.theme);
-
-
-    const path = 'logseq-marketplace/lastUpdate.txt'; //github Actionsで実行する場合は、logseq-marketplace/lastUpdate.txtにする
-
-    //const path = 'lastUpdate.txt'; //ローカルで実行する場合は、lastUpdate.txtにする
-
 
 
     //pluginData.datetimeをtxtファイルから読み込む
