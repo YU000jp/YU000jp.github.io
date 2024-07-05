@@ -147,8 +147,8 @@ function createTable(packages, theme, lastUpdate) {
                 <small>${number}</small>
             </th>
             <th translate="no" title="${repo}">
-                <img alt="GitHub Repo stars" src="https://img.shields.io/github/stars/${repo}?style=for-the-badge&label=★" loading="lazy"/><br/>
-                ${theme === 'theme' ? `<img alt="GitHub last commit" src="https://img.shields.io/github/last-commit/${repo}?style=for-the-badge&label=%20" loading="lazy"/>` : `<img alt="GitHub Downloads (all assets, all releases)" src="https://img.shields.io/github/downloads/${repo}/total?style=for-the-badge&label=%20" loading="lazy" />`}
+                <img title="GitHub Repo stars" src="https://img.shields.io/github/stars/${repo}?style=for-the-badge&label=%20" loading="lazy"/><br/>
+                ${theme === 'theme' ? `<img title="GitHub last commit" src="https://img.shields.io/github/last-commit/${repo}?style=for-the-badge&label=%20" loading="lazy"/>` : `<img title="GitHub Downloads (all assets, all releases)" src="https://img.shields.io/github/downloads/${repo}/total?style=for-the-badge&label=%20" loading="lazy" />`}
             </th>
             <td translate="no">
                 ${iconHTML}
