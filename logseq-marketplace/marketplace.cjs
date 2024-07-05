@@ -2,7 +2,7 @@ const fs = require('fs');
 const axios = require('axios');
 
 const path = 'logseq-marketplace/lastUpdate.txt'; //github Actionsで実行する場合は、logseq-marketplace/lastUpdate.txtにする
-//const path = 'lastUpdate.txt'; //ローカルで実行する場合は、lastUpdate.txtにする
+const path2 = 'lastUpdate.txt'; //ローカルで実行する場合は、lastUpdate.txtにする
 
 async function fetchPluginsData() {
     try {
@@ -24,7 +24,7 @@ async function downloadIcon(iconURL, id, icon) {
             fs.mkdirSync(`./icon/${id}`, { recursive: true });
             fs.writeFileSync(iconPath, Buffer.from(response.data));
         } catch (error) {
-            console.error({ iconPath })
+            console.error({ iconPath });
             console.error(`Error downloading icon for package ID ${id}:`, error);
         }
     }
@@ -62,10 +62,21 @@ async function createTablesByTheme() {
     //pluginData.datetimeをtxtファイルから読み込む
     fs.readFile(path, 'utf8', (err, data) => {
         if (err) {
-            console.error(`Error reading lastUpdate.txt:`, err);
+            console.error(`Error reading ${path}:`, err);
+            // Try reading from "lastUpdate.txt" if reading from "path" fails
+            fs.readFile(path2, 'utf8', (err, data) => {
+                if (err) {
+                    console.error(`Error reading ${path2}:`, err);
+                    return;
+                }
+                handleLastUpdateData(data);
+            });
             return;
         }
+        handleLastUpdateData(data);
+    });
 
+    function handleLastUpdateData(data) {
         //古い値と新しい値が同じだったら終了
         if (pluginsData.datetime.toString() === data.toString()) {
             console.log(`Not need update. exit.`);
@@ -73,7 +84,7 @@ async function createTablesByTheme() {
             // pluginData.datetimeをtxtファイルに書き込む
             fs.writeFile(path, pluginsData.datetime.toString(), (err) => {
                 if (err) {
-                    console.error(`Error writing lastUpdate.txt:`, err);
+                    console.error(`Error writing ${path}:`, err);
                     return;
                 }
             });
@@ -90,7 +101,7 @@ async function createTablesByTheme() {
             // Download icons
             downloadIcons(sortedPackages);
         }
-    });
+    }
 }
 
 function createTable(packages, theme, lastUpdate) {
