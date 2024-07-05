@@ -2,6 +2,10 @@ body.deleteLines table#target>tbody>tr:has(input[type="checkbox"]:checked) {
     display: none;
 }
 
+div#target_wrapper>div#target_filter>label>input[type="search"] {
+    width: 500px;
+}
+
 table#target {
     border-collapse: collapse;
     width: 100%;
